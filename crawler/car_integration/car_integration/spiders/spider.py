@@ -4,7 +4,7 @@ import urllib.parse
 import time
 import logging
 from bs4 import BeautifulSoup
-from crawler.configs import configs
+from crawler.car_integration.car_integration.configs import configs
 
 
 
