@@ -1,0 +1,8 @@
+database/*
+__pycache__/
+venv/
+*.jpeg
+*.png
+spider/geckodriver.log
+.env
+.idea/
