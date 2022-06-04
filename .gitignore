@@ -6,3 +6,5 @@ venv/
 spider/geckodriver.log
 .env
 .idea/
+car_integration
+crawler/car_integration/anycar.json
