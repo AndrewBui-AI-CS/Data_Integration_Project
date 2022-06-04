@@ -4,11 +4,10 @@ import re
 
 import requests
 import scrapy
+from car_integration.items import CarIntegrationItem
+from car_integration.mapping import mapping
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
-
-from anycar.items import AnycarItem
-from anycar.mapping import mapping
 
 
 class AnycarSpider(scrapy.Spider):
@@ -42,7 +41,7 @@ class AnycarSpider(scrapy.Spider):
                 yield scrapy.Request(url=response_next_page.urljoin(product), callback=self.parse_product)
 
     def parse_product(self, response):
-        data = AnycarItem(
+        data = CarIntegrationItem(
             source=response.request.url,
             name=response.xpath('//h1/text()').get(),
             base_url=self.base_url,
