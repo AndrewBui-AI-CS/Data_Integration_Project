@@ -8,3 +8,4 @@ spider/geckodriver.log
 .idea/
 car_integration
 crawler/car_integration/anycar.json
+.vscode
