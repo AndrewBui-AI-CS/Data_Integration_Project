@@ -32,4 +32,3 @@ class CarIntegrationItem(scrapy.Item):
     time_update = Field() #thoi gian crawl
     info_contact = Field() #lien he nguoi ban
     status = Field()
-    pass
