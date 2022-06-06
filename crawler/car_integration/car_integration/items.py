@@ -18,6 +18,7 @@ class CarIntegrationItem(scrapy.Item):
     engine = Field() #dong co
     max_wattage = Field() #cong suat toi da
     fuel_consumption = Field() #tieu thu nhien lieu (l/km) 
+    fuel_type = Field() # Loai nhien lieu
     origin = Field() #xuat xu
     transmission = Field() #hop so
     price = Field() #gia
@@ -29,6 +30,7 @@ class CarIntegrationItem(scrapy.Item):
     mfg = Field()  #manufacturing date
     drive = Field() #dan dong
     fuel_tank_capacity = Field() #dung tich binh xang
+    capacity = Field() # Trong tai
     time_update = Field() #thoi gian crawl
     info_contact = Field() #lien he nguoi ban
     status = Field()
