@@ -1,10 +1,10 @@
 import datetime
-from glob import glob
-from operator import index
 
 import requests
 import scrapy
 import scrapy_splash
+# from crawler.car_integration.car_integration.items import CarIntegrationItem
+# from crawler.car_integration.car_integration.mapping import mapping
 from car_integration.items import CarIntegrationItem
 from car_integration.mapping import mapping
 from scrapy.http import HtmlResponse
@@ -12,7 +12,7 @@ from scrapy.utils.project import get_project_settings
 from scrapy_splash import SplashRequest
 
 
-class ChototSpider(scrapy.Spider):
+class XeChoTotSpider(scrapy.Spider):
     name = "xechotot"
     allowed_domains = ["xe.chotot.com"]
     base_url = "https://xe.chotot.com"

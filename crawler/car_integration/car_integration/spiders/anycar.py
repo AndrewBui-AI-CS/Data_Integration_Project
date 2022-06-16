@@ -5,6 +5,8 @@ import re
 import pymongo
 import requests
 import scrapy
+# from crawler.car_integration.car_integration.items import CarIntegrationItem
+# from crawler.car_integration.car_integration.mapping import mapping
 from car_integration.items import CarIntegrationItem
 from car_integration.mapping import mapping
 from scrapy.http import HtmlResponse
@@ -19,10 +21,10 @@ class AnycarSpider(scrapy.Spider):
         base_url + "/ban-xe-oto",
     ]
     settings = get_project_settings()
-    db = pymongo.MongoClient(
-        settings['MONGODB_SERVER'],
-        settings['MONGODB_PORT']
-    )[settings['MONGODB_DB']][settings['MONGODB_COLLECTION_CONFIG']]
+    # db = pymongo.MongoClient(
+    #     settings['MONGODB_SERVER'],
+    #     settings['MONGODB_PORT']
+    # )[settings['MONGODB_DB']][settings['MONGODB_COLLECTION_CONFIG']]
     
     def parse(self, response, *args, **kwargs):
         list_product = response.xpath(
