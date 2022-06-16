@@ -7,6 +7,7 @@
 import logging
 import sys
 
+
 # useful for handling different item types with a single interface
 import pymongo
 from pymongo.errors import ConnectionFailure
@@ -16,6 +17,7 @@ from confluent_kafka import Producer
 import json
 import time
 
+
 settings = get_project_settings()
 
 
@@ -23,6 +25,7 @@ def connect_database():
     try:
         connection = pymongo.MongoClient(
             settings['MONGODB_URI']
+
         )
         return connection[settings['MONGODB_DB']]
     except ConnectionFailure as e:
@@ -75,7 +78,54 @@ class KafkaPipeline(object):
         self.p.poll(0)
         time.sleep(1)
         # self.p.flush()
-
-class CarIntegrationPipeline:
+        
     def process_item(self, item, spider):
+        valid = True
+        for data in item:
+            if not data:
+                valid = False
+                raise DropItem("Missing {0}!".format(data))
+
+        if valid:
+            try:
+                filter_link = {'source': item.get('source')}
+                print(filter_link)
+                print(self.collection.find(filter_link))
+                # if self.collection.find(filter_link).count() > 0:
+                #     self.collection.replace_one(filter_link, item, upsert=True)
+                # else:
+                self.collection.insert_one(dict(item))
+            except Exception as e:
+                print("An exception occurred :", e)
+                return False
+
+            # self.count += 1
+
+            # if self.count % 100 == 0:
+            #     logging.info("Added " + str(self.count) + " records from " + spider.name + " into MongoDB database!")
+
+        return item
+
+# class CarIntegrationPipeline:
+#     def process_item(self, item, spider):
+#         return item
+
+class DefaultValuesPipeline(object):
+    @staticmethod
+    def process_item(item, spider):
+        item.setdefault('overall_dimension', '')
+        item.setdefault('cylinder_capacity', '')
+        item.setdefault('engine', '')
+        item.setdefault('max_wattage', '')
+        item.setdefault('fuel_consumption', '')
+        item.setdefault('origin', '')
+        item.setdefault('transmission', '')
+        item.setdefault('manufacturer', '')
+        item.setdefault('type', '')
+        item.setdefault('color', '')
+        item.setdefault('interior_color', '')
+        item.setdefault('mfg', '')
+        item.setdefault('drive', '')
+        item.setdefault('fuel_tank_capacity', '')
+        item.setdefault('status', '')
         return item
