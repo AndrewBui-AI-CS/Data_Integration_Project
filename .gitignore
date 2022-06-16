@@ -8,3 +8,4 @@ spider/geckodriver.log
 .idea/
 car_integration
 *.json
+.vscode
