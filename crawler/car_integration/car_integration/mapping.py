@@ -19,7 +19,8 @@ FIELD = {
     'mfg': ['Năm sản xuất', 'Năm SX'],
     'drive': ['Dẫn động'],
     'fuel_tank_capacity': ['dung tích bình nhiên liệu (lít)', 'Dung tích thùng nhiên liệu (lít)',
-                           'Dung tích bình nhiên liệu', 'Dung tích thùng nhiên liệu (L)']
+                           'Dung tích bình nhiên liệu', 'Dung tích thùng nhiên liệu (L)'],
+    'status': ['Tình trạng', 'tình trạng',]
 }
 
 
