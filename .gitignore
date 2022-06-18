@@ -6,6 +6,5 @@ venv/
 spider/geckodriver.log
 .env
 .idea/
-car_integration
 *.json
 .vscode
