@@ -29,3 +29,69 @@ def mapping(value: str):
         if value in FIELD[key]:
             return key
     return None
+
+FIELD_ANYCAR = {
+    'kieu_dang' : 'kiểu dáng',
+    'dung_tich_dong_co': 'dung tích động cơ',
+    'nhien_lieu': 'nhiên liệu',
+    'hop_so': 'hộp số',
+    'km_da_di': 'km đã đi',
+    'mau_xe': 'màu xe',
+    'mau_noi_that': 'màu nội thất',
+    'xuat_xu' : 'xuất xứ',
+    'nam_sx' : 'năm sx',
+    'so_cho_ngoi': 'số chỗ ngồi',
+    'dan_dong' : 'dẫn động',
+    'so_cua': 'số cửa',
+    'tinh_trang_ho_so' : 'tình trạng hồ sơ',
+}
+
+def mapping_anycar(value: str):
+    for key in FIELD_ANYCAR.keys():
+        if value.lower()  in FIELD_ANYCAR[key]:
+            return key
+    return None
+
+
+FIELD_XECHOTOT = {
+    'hang': 'hãng',
+    'dong_xe': 'dòng xe',
+    'nam_san_xuat': 'năm sản xuất',
+    'so_km_da_di': 'số km đã đi',
+    'tinh_trang': 'tình trạng',
+    'hop_so': 'hộp số',
+    'nhien_lieu': 'nhiên liệu',
+    'xuat_xu': 'xuất xứ',
+    'kieu_dang': 'kiểu dáng',
+    'so_cho': 'số chỗ',
+}
+
+def mapping_xechotot(value: str):
+    for key in FIELD_XECHOTOT.keys():
+        if value.lower()  in FIELD_XECHOTOT[key]:
+            return key
+    return None
+
+
+FIELD_BONBANH = {
+    'xuat_xu': 'xuất xứ',
+    'tinh_trang': 'tình trạng',
+    'dong_xe': 'dòng xe',
+    'so_km_da_di': 'số km đã đi',
+    'mau_ngoai_that': 'màu ngoại thất',
+    'mau_noi_that': 'màu nội thất',
+    'so_cua': 'số cửa',
+    'so_cho_ngoi': 'số chỗ ngồi',
+    'dong_co': 'động cơ',
+    'he_thong_nap_nhien_lieu': 'hệ thống nạp nhiên liệu',
+    'hop_so': 'hộp số',
+    'dan_dong': 'dẫn động',
+    'tieu_thu_nhien_lieu': 'tiêu thụ nhiên liệu',
+}
+
+def mapping_bonbanh(value: str):
+    print("Value: ", value)
+    for key in FIELD_BONBANH.keys():
+        if value.lower().rstrip(':') in FIELD_BONBANH[key]:
+            return key
+    return None
