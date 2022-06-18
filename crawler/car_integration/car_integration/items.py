@@ -8,10 +8,10 @@ from scrapy import Field
 
 
 class CarIntegrationItem(scrapy.Item):
-    # define the fields for your item here like:
     source = Field() 
     name = Field()
     base_url = Field()
+    price = Field() #gia
     image = Field() #list hinh anh
     overall_dimension = Field() #kich thuoc co so
     cylinder_capacity = Field() #dung tich xilanh
@@ -21,7 +21,6 @@ class CarIntegrationItem(scrapy.Item):
     fuel_type = Field() # Loai nhien lieu
     origin = Field() #xuat xu
     transmission = Field() #hop so
-    price = Field() #gia
     seat = Field() #so cho ngoi
     manufacturer = Field() #nha san xuat
     type = Field() #kieu dang/ dong xe
@@ -34,3 +33,45 @@ class CarIntegrationItem(scrapy.Item):
     time_update = Field() #thoi gian crawl
     info_contact = Field() #lien he nguoi ban
     status = Field()
+
+    #anycar additional item
+    # kieu_dang = Field()
+    # dung_tich_dong_co = Field()
+    # nhien_lieu = Field()
+    # hop_so = Field()
+    # km_da_di = Field()
+    # mau_xe = Field()
+    # mau_noi_that = Field()
+    # xuat_xu = Field()
+    # nam_sx = Field()
+    # so_cho_ngoi = Field()
+    # dan_dong = Field()
+    # so_cua = Field()
+    # tinh_trang_ho_so = Field()
+
+    #Xechotot additional item
+    # hang = Field()
+    # nam_san_xuat = Field()
+    # tinh_trang = Field()
+    # nhien_lieu = Field()
+    # kieu_dang = Field()
+    # dong_xe = Field()
+    # so_km_da_di = Field()
+    # hop_so = Field()
+    # xuat_xu = Field()
+    # so_cho = Field()
+
+    #Bonbanh addtional item
+    # xuat_xu = Field()
+    # tinh_trang = Field()
+    # dong_xe = Field()
+    # so_km_da_di = Field()
+    # mau_ngoai_that = Field()
+    # mau_noi_that = Field()
+    # so_cua = Field()
+    # so_cho_ngoi = Field()
+    # dong_co = Field()
+    # he_thong_nap_nhien_lieu = Field()
+    # hop_so = Field()
+    # dan_dong = Field()
+    # tieu_thu_nhien_lieu = Field()

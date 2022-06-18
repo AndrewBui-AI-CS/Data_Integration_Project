@@ -3,10 +3,8 @@ import datetime
 import requests
 import scrapy
 import scrapy_splash
-# from crawler.car_integration.car_integration.items import CarIntegrationItem
-# from crawler.car_integration.car_integration.mapping import mapping
 from car_integration.items import CarIntegrationItem
-from car_integration.mapping import mapping
+from car_integration.mapping import mapping, mapping_xechotot
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
 from scrapy_splash import SplashRequest
@@ -43,7 +41,7 @@ class XeChoTotSpider(scrapy.Spider):
             )
 
         self.index_next_page = self.index_next_page + 1
-        if self.index_next_page == 2:
+        if self.index_next_page == 3:
             return
         next_page = "https://xe.chotot.com/mua-ban-oto?page={}".format(
             self.index_next_page
@@ -59,8 +57,7 @@ class XeChoTotSpider(scrapy.Spider):
     def parse_product(self, response):
         data = CarIntegrationItem(
             source=response.request.url,
-            # name=response.xpath('//*[@itemprop="name"]/text()').getall()[1],
-            name='',
+            name=response.xpath('//*[@itemprop="name"]/text()').getall()[1],
             base_url=self.base_url,
             price=response.xpath('//span[@itemprop="price"]/text()').get(),
             time_update=datetime.datetime.utcnow(),
@@ -82,20 +79,33 @@ class XeChoTotSpider(scrapy.Spider):
             fuel_tank_capacity=None,
             info_contact={"address": response.xpath('//span[@class="fz13"]/text()')},
             status="",
+
+            # # addtional crawling
+            # hang = "",
+            # nam_san_xuat = "",
+            # tinh_trang = "",
+            # nhien_lieu = "",
+            # kieu_dang = "",
+            # dong_xe = "",
+            # so_km_da_di = "",
+            # hop_so = "",
+            # xuat_xu = "",
+            # so_cho = "",
         )
         details = response.xpath(
             '//*[@id="__next"]/div/div[3]/div[1]/div/div[4]/div[5]/div/div/div[2]'
         )
-        data['image'] = response.xpath('//img[@role="presentation"]/@src').getall()
         for detail in details:
             key = detail.xpath("span/span/text()").get().strip().replace(":", "")
+            # field = mapping_xechotot(key)
             field = mapping(key)
             if field:
                 data[field] = detail.xpath("span/span[2]/text()").get()
 
+        data['image'] = response.xpath('//img[@role="presentation"]/@src').getall()
         data["info_contact"]["name"] = response.xpath(
             '//*[@id="__next"]/div/div[3]/div[1]/div/div[6]/div/div[2]/div[1]/div/a/div[2]/div[1]/div/b/text()'
         ).get()
-        html = response.body
-        print("HTML images", response.xpath('//img[@role="presentation"]/@src'))
+        # html = response.body
+        # print("HTML images", response.xpath('//img[@role="presentation"]/@src'))
         yield data

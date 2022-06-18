@@ -17,7 +17,7 @@ USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Ge
 # USER_AGENT = 'car_integration (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+# ROBOTSTXT_OBEY = True
 
 #Log
 
@@ -45,6 +45,7 @@ MONGODB_PORT = 27017
 MONGODB_DB = "car"
 MONGODB_COLLECTION = "car"
 MONGODB_COLLECTION_CONFIG = "config"
+MONGODB_URI='mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
 
@@ -89,7 +90,9 @@ MONGODB_COLLECTION_CONFIG = "config"
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'car_integration.pipelines.MongoDBPipeline': 300,
+   'car_integration.pipelines.DefaultValuesPipeline': 300, 
+#    'car_integration.pipelines.MongoDBPipeline': 300,
+#    'car_integration.pipelines.KafkaPipeline': 100,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
