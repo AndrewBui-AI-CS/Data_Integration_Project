@@ -7,7 +7,7 @@ import requests
 import scrapy
 from car_integration.items import CarIntegrationItem
 from car_integration.mapping import mapping
-# from car_integration.mapping import mapping_anycar
+# from car_integration.mapping import mapping_anycar #additional mapping
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
 
@@ -66,10 +66,10 @@ class AnycarSpider(scrapy.Spider):
             price=response.xpath('//*[@id="gia_ban"]/text()').get(),
             time_update=datetime.datetime.utcnow(),
             image=[],
-            overall_dimension=None,
+            # overall_dimension=None,
             cylinder_capacity=None,
             engine="",
-            max_wattage=None,
+            # max_wattage=None,
             fuel_consumption="",
             origin="",
             transmission="",
@@ -80,7 +80,7 @@ class AnycarSpider(scrapy.Spider):
             interior_color="",
             mfg=None,
             drive="",
-            fuel_tank_capacity=None,
+            # fuel_tank_capacity=None,
             info_contact={
                 "name": response.xpath(
                     '//*[@id="car-detail"]/div/div/div[2]/div[1]/div[3]/div/b/text()'
@@ -110,7 +110,7 @@ class AnycarSpider(scrapy.Spider):
         details = response.xpath('//div[@class="row"]/div/div/div[@class="line"]')
         for detail in details:
             key = detail.xpath('div[@class="line-label"]/text()').get().strip()
-            # field = mapping_anycar(key)
+            # field = mapping_anycar(key) #additional mapping
             field = mapping(key)
             if field:
                 data[field] = detail.xpath('div[@class="line-value"]/text()').get()
@@ -128,5 +128,6 @@ class AnycarSpider(scrapy.Spider):
         #     reg_engine = re.findall(r"(.*) (\d+)", regex_string[1])[0]
         #     data["manufacturer"] = reg_manufacturer_type[0]
         #     data["engine"] = reg_engine[0]
+        
 
         yield data

@@ -6,7 +6,7 @@ import re
 import requests
 import scrapy
 from car_integration.items import CarIntegrationItem
-from car_integration.mapping import mapping_bonbanh
+from car_integration.mapping import mapping, mapping_bonbanh
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
 
@@ -46,15 +46,15 @@ class BonbanhSpider(scrapy.Spider):
             source=response.request.url,
             name=response.xpath('//*[@id="car_detail"]/div[3]/h1/text()')
             .get()
-            .replace("\t", ""),
+            .replace("\t", " "),
             base_url=self.base_url,
             time_update=datetime.datetime.utcnow(),
             image=[],
             price="",
-            overall_dimension=None,
+            # overall_dimension=None,
             cylinder_capacity=None,
             engine="",
-            max_wattage=None,
+            # max_wattage=None,
             fuel_consumption="",
             origin="",
             transmission="",
@@ -63,9 +63,10 @@ class BonbanhSpider(scrapy.Spider):
             type="",
             color="",
             mfg=None,
-            fuel_tank_capacity=None,
+            # fuel_tank_capacity=None,
             info_contact={},
-
+            status="",
+            
             # # additional crawling
             # xuat_xu="",
             # tinh_trang="",
@@ -82,17 +83,18 @@ class BonbanhSpider(scrapy.Spider):
             # tieu_thu_nhien_lieu="",
         )
 
-        # # additional crawling
-        # details = response.xpath(
-        #     "//*[@id='mail_parent'  and (@class='row' or @class='row_last')]"
-        # )
-        # for detail in details:
-        #     key = detail.xpath("div/label/text()").get().strip()
-        #     field = mapping_bonbanh(key)
-        #     if field:
-        #         data[field] = detail.xpath("div[2]/span/text()").get()
-        # print("Data: ", data)
-
-
-
+        details = response.xpath(
+            "//*[@id='mail_parent'  and (@class='row' or @class='row_last')]"
+        )
+        for detail in details:
+            key = detail.xpath("div/label/text()").get().strip().replace(':', '')
+            # field = mapping_bonbanh(key) #additional mapping
+            field = mapping(key)
+            if field:
+                data[field] = detail.xpath("div[2]/span/text()").get().replace('\t', ' ')
+        
+        data['price'] = data['name'].split('-')[1].strip()
+        regex = '\d{4}'
+        data['mfg'] = re.findall(regex, data['name'])[0]
+        print('data', data)
         yield data

@@ -62,10 +62,10 @@ class XeChoTotSpider(scrapy.Spider):
             price=response.xpath('//span[@itemprop="price"]/text()').get(),
             time_update=datetime.datetime.utcnow(),
             image=[],
-            overall_dimension=None,
+            # overall_dimension=None,
             cylinder_capacity=None,
             engine="",
-            max_wattage=None,
+            # max_wattage=None,
             fuel_consumption="",
             origin="",
             transmission="",
@@ -76,7 +76,7 @@ class XeChoTotSpider(scrapy.Spider):
             interior_color="",
             mfg=None,
             drive="",
-            fuel_tank_capacity=None,
+            # fuel_tank_capacity=None,
             info_contact={"address": response.xpath('//span[@class="fz13"]/text()')},
             status="",
 
@@ -97,7 +97,7 @@ class XeChoTotSpider(scrapy.Spider):
         )
         for detail in details:
             key = detail.xpath("span/span/text()").get().strip().replace(":", "")
-            # field = mapping_xechotot(key)
+            # field = mapping_xechotot(key) #additional mapping
             field = mapping(key)
             if field:
                 data[field] = detail.xpath("span/span[2]/text()").get()
@@ -108,4 +108,5 @@ class XeChoTotSpider(scrapy.Spider):
         ).get()
         # html = response.body
         # print("HTML images", response.xpath('//img[@role="presentation"]/@src'))
+        print("Data: ", data)
         yield data
