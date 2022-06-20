@@ -6,7 +6,8 @@ import re
 import requests
 import scrapy
 from car_integration.items import CarIntegrationItem
-from car_integration.mapping import mapping, mapping_bonbanh
+from car_integration.mapping import (mapping, mapping_bonbanh,
+                                     mapping_car_manufacturer)
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
 
@@ -37,7 +38,7 @@ class BonbanhSpider(scrapy.Spider):
             )
         next_page = "https://bonbanh.com/oto/page,{}".format(self.next_page_number)
         self.next_page_number += 1
-        if self.next_page_number == 5:
+        if self.next_page_number == 1001:
             return
         yield scrapy.Request(url=next_page, callback=self.parse)
 
@@ -52,7 +53,8 @@ class BonbanhSpider(scrapy.Spider):
             image=[],
             price="",
             # overall_dimension=None,
-            cylinder_capacity=None,
+            # cylinder_capacity=None,
+            fuel = "",
             engine="",
             # max_wattage=None,
             fuel_consumption="",
@@ -62,9 +64,10 @@ class BonbanhSpider(scrapy.Spider):
             manufacturer="",
             type="",
             color="",
+            km="",
             mfg=None,
             # fuel_tank_capacity=None,
-            info_contact={},
+            # info_contact={},
             status="",
             
             # # additional crawling
@@ -96,5 +99,10 @@ class BonbanhSpider(scrapy.Spider):
         data['price'] = data['name'].split('-')[1].strip()
         regex = '\d{4}'
         data['mfg'] = re.findall(regex, data['name'])[0]
+        data['image'] = response.xpath('//div[@id="medium_img"]/a/@href').getall()
+        if (data['engine'].split(' ')[0]): 
+            data['fuel'] = data['engine'].split(' ')[0]
+
+        data['manufacturer'] = mapping_car_manufacturer(data['name'])
         print('data', data)
         yield data

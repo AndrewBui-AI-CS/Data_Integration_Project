@@ -14,7 +14,8 @@ class CarIntegrationItem(scrapy.Item):
     price = Field() #gia
     image = Field() #list hinh anh
     # overall_dimension = Field() #kich thuoc co so
-    cylinder_capacity = Field() #dung tich xilanh
+    # cylinder_capacity = Field() #dung tich xilanh
+    fuel = Field()
     engine = Field() #dong co
     # max_wattage = Field() #cong suat toi da
     fuel_consumption = Field() #tieu thu nhien lieu (l/km) 
@@ -24,12 +25,13 @@ class CarIntegrationItem(scrapy.Item):
     manufacturer = Field() #nha san xuat
     type = Field() #kieu dang/ dong xe
     color = Field() #mau
+    km = Field() #km da di
     interior_color = Field()#mau noi that
     mfg = Field()  #manufacturing date
     drive = Field() #dan dong
-    fuel_tank_capacity = Field() #dung tich binh xang
+    # fuel_tank_capacity = Field() #dung tich binh xang
     time_update = Field() #thoi gian crawl
-    info_contact = Field() #lien he nguoi ban
+    # info_contact = Field() #lien he nguoi ban
     status = Field()
 
     #anycar additional item

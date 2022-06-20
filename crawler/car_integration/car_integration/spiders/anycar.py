@@ -6,7 +6,7 @@ import pymongo
 import requests
 import scrapy
 from car_integration.items import CarIntegrationItem
-from car_integration.mapping import mapping
+from car_integration.mapping import mapping, mapping_car_manufacturer
 # from car_integration.mapping import mapping_anycar #additional mapping
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
@@ -67,7 +67,8 @@ class AnycarSpider(scrapy.Spider):
             time_update=datetime.datetime.utcnow(),
             image=[],
             # overall_dimension=None,
-            cylinder_capacity=None,
+            # cylinder_capacity=None,
+            fuel = "",
             engine="",
             # max_wattage=None,
             fuel_consumption="",
@@ -76,16 +77,17 @@ class AnycarSpider(scrapy.Spider):
             seat=None,
             manufacturer="",
             type="",
+            km="",
             color="",
             interior_color="",
             mfg=None,
             drive="",
             # fuel_tank_capacity=None,
-            info_contact={
-                "name": response.xpath(
-                    '//*[@id="car-detail"]/div/div/div[2]/div[1]/div[3]/div/b/text()'
-                ).get()
-            },
+            # info_contact={
+            #     "name": response.xpath(
+            #         '//*[@id="car-detail"]/div/div/div[2]/div[1]/div[3]/div/b/text()'
+            #     ).get()
+            # },
             status="",
 
 
@@ -128,6 +130,6 @@ class AnycarSpider(scrapy.Spider):
         #     reg_engine = re.findall(r"(.*) (\d+)", regex_string[1])[0]
         #     data["manufacturer"] = reg_manufacturer_type[0]
         #     data["engine"] = reg_engine[0]
-        
-
+        data['manufacturer'] = mapping_car_manufacturer(data['name'])
+        print(data)
         yield data
