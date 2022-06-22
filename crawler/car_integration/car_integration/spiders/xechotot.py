@@ -41,7 +41,7 @@ class XeChoTotSpider(scrapy.Spider):
             )
 
         self.index_next_page = self.index_next_page + 1
-        if self.index_next_page == 1001:
+        if self.index_next_page == 501:
             return
         next_page = "https://xe.chotot.com/mua-ban-oto?page={}".format(
             self.index_next_page
