@@ -24,6 +24,7 @@ class CarIntegrationItem(scrapy.Item):
     seat = Field() #so cho ngoi
     manufacturer = Field() #nha san xuat
     type = Field() #kieu dang/ dong xe
+    category = Field()
     color = Field() #mau
     km = Field() #km da di
     interior_color = Field()#mau noi that

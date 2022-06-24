@@ -5,6 +5,7 @@ import scrapy
 import scrapy_splash
 from car_integration.items import CarIntegrationItem
 from car_integration.mapping import mapping, mapping_xechotot
+from car_integration.utils import clean_data
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
 from scrapy_splash import SplashRequest
@@ -73,6 +74,7 @@ class XeChoTotSpider(scrapy.Spider):
             seat=None,
             manufacturer="",
             type="",
+            category = "",
             color="",
             interior_color="",
             mfg=None,
@@ -107,4 +109,4 @@ class XeChoTotSpider(scrapy.Spider):
         data['image'] = response.xpath('//img[@role="presentation"]/@src').getall()
         
         print("Data: ", data)
-        yield data
+        yield clean_data(data)

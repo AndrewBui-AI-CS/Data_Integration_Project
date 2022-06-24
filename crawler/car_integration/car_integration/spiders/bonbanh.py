@@ -64,6 +64,7 @@ class BonbanhSpider(scrapy.Spider):
             seat=None,
             manufacturer="",
             type="",
+            category="",
             color="",
             km="",
             mfg=None,

@@ -42,7 +42,8 @@ FIELD = {
     "seat": ["chỗ ngồi", "số ghế ngồi", "số chỗ ngồi", "số chỗ"],
     "manufacturer": ["hãng xe", "hãng"],
     "km": ["km đã đi", "số km đã đi"],
-    "type": ["dòng xe", "kiểu dáng", "bodytype"],
+    "category": ["mẫu xe", "dòng xe"],
+    "type": ["kiểu dáng", "dòng xe", "bodytype"],
     "color": ["màu sắc", "màu", "màu ngoại thất", "màu xe", "mầu ngoại thất"],
     "interior_color": ["màu nội thất", "mầu nội thất"],
     "mfg": ["năm sản xuất", "năm sx", "year"],
@@ -177,36 +178,37 @@ def mapping_choxeotofun(value: str):
 
 
 MANUFACTURER = {
-    'kia': ['kia'],
-    'toyota': ['toyota'],
-    'mercedes': ['mercedes', 'mercedes-benz'],
-    'vinfast': ['vinfast'],
-    'lexus': ['lexus'],
-    'ford': ['ford'],
-    'hyundai': ['hyundai'],
-    'porsche': ['porsche'],
-    'honda': ['honda'],
-    'bmw': ['bmw'],
-    'audi': ['audi'],
-    'bentley': ['bentley'],
-    'ferrari': ['ferrari'],
-    'lamborghini': ['lamborghini'],
-    'volvo': ['volvo'],
-    'volkswagen': ['volkswagen'],
-    'suzuki': ['suzuki'],
-    'chevrolet': ['chevrolet'],
-    'fiat': ['fiat'],
-    'peugeot': ['peugeot'],
-    'nissan': ['nissan'],
-    'jeep': ['jeep'],
-    'mitsubishi': ['mitsubishi'],
-    'land rover': ['land rover'],
-    'maserati': ['maserati'],
+    "kia": ["kia"],
+    "toyota": ["toyota"],
+    "mercedes": ["mercedes", "mercedes-benz"],
+    "vinfast": ["vinfast"],
+    "lexus": ["lexus"],
+    "ford": ["ford"],
+    "hyundai": ["hyundai"],
+    "porsche": ["porsche"],
+    "honda": ["honda"],
+    "bmw": ["bmw"],
+    "audi": ["audi"],
+    "bentley": ["bentley"],
+    "ferrari": ["ferrari"],
+    "lamborghini": ["lamborghini"],
+    "volvo": ["volvo"],
+    "volkswagen": ["volkswagen"],
+    "suzuki": ["suzuki"],
+    "chevrolet": ["chevrolet"],
+    "fiat": ["fiat"],
+    "peugeot": ["peugeot"],
+    "nissan": ["nissan"],
+    "jeep": ["jeep"],
+    "mitsubishi": ["mitsubishi"],
+    "land rover": ["land rover"],
+    "maserati": ["maserati"],
 }
+
 
 def mapping_car_manufacturer(value: str):
     for key in MANUFACTURER.keys():
-        for manufacturer in (MANUFACTURER[key]):
+        for manufacturer in MANUFACTURER[key]:
             if re.search(manufacturer, value.lower()):
                 return key.capitalize()
     return None
