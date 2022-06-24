@@ -19,14 +19,15 @@ USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Ge
 # Obey robots.txt rules
 # ROBOTSTXT_OBEY = True
 
-#Log
+# Log
 
-LOG_LEVEL = 'INFO'
+LOG_LEVEL = "INFO"
 
 # Splash config
 SPLASH_URL = "http://localhost:8050/"
 DUPEFILTER_CLASS = "scrapy_splash.SplashAwareDupeFilter"
 HTTPCACHE_STORAGE = "scrapy_splash.SplashAwareFSCacheStorage"
+RETRY_HTTP_CODES = [429]
 COOKIES_ENABLED = True
 SPLASH_COOKIES_DEBUG = False
 SPIDER_MIDDLEWARES = {
@@ -45,7 +46,7 @@ MONGODB_PORT = 27017
 MONGODB_DB = "car"
 MONGODB_COLLECTION = "car"
 MONGODB_COLLECTION_CONFIG = "config"
-MONGODB_URI='mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false'
+MONGODB_URI = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
 
@@ -71,9 +72,10 @@ MONGODB_URI='mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%2
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-# SPIDER_MIDDLEWARES = {
-#    'car_integration.middlewares.CarIntegrationSpiderMiddleware': 543,
-# }
+SPIDER_MIDDLEWARES = {
+    #    'car_integration.middlewares.CarIntegrationSpiderMiddleware': 543,
+    "car_integration.middlewares.TooManyRequestsRetryMiddleware": 543,
+}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
@@ -90,9 +92,9 @@ MONGODB_URI='mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%2
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'car_integration.pipelines.DefaultValuesPipeline': 300, 
-#    'car_integration.pipelines.MongoDBPipeline': 300,
-#    'car_integration.pipelines.KafkaPipeline': 100,
+       'car_integration.pipelines.DefaultValuesPipeline': 300,
+    # "car_integration.pipelines.MongoDBPipeline": 300,
+    #    'car_integration.pipelines.KafkaPipeline': 100,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
