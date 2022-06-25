@@ -1,19 +1,6 @@
 import re
 
 FIELD = {
-    # "overall_dimension": [
-    #     "kích thước tổng thể dxrxc",
-    #     "dài x rộng x cao",
-    #     "kích thước (d x r x c, mm)",
-    #     "dài x rộng x cao (mm)",
-    # ],
-    # "cylinder_capacity": [
-    #     "dung tích xy lanh",
-    #     "dung tích xi lanh (cc)",
-    #     "dung tích xi lanh",
-    #     "dung tích xy lanh (cm3)",
-    #     "dung tích động cơ",
-    # ],
     "engine": [
         "động cơ",
         "dung tích xy lanh",
@@ -22,11 +9,6 @@ FIELD = {
         "dung tích xy lanh (cm3)",
         "dung tích động cơ",
     ],
-    # "max_wattage": [
-    #     "công suất cực đại",
-    #     "công suất (mã lực)",
-    #     "công suất (mã lực) cực đại (kw/rpm)",
-    # ],
     "fuel_consumption": [
         "mức tiêu thụ nhiên liệu",
         "tiêu thụ nhiên liệu",
@@ -48,12 +30,6 @@ FIELD = {
     "interior_color": ["màu nội thất", "mầu nội thất"],
     "mfg": ["năm sản xuất", "năm sx", "year"],
     "drive": ["dẫn động", "kiểu dẫn động"],
-    # "fuel_tank_capacity": [
-    #     "dung tích bình nhiên liệu (lít)",
-    #     "dung tích thùng nhiên liệu (lít)",
-    #     "dung tích bình nhiên liệu",
-    #     "dung tích thùng nhiên liệu (l)",
-    # ],
     "status": ["tình trạng", "tình trạng hồ sơ", "tình trạng xe"],
 }
 
@@ -184,7 +160,7 @@ MANUFACTURER = {
     "vinfast": ["vinfast"],
     "lexus": ["lexus"],
     "ford": ["ford"],
-    "hyundai": ["hyundai"],
+    "hyundai": ["hyundai", "huyndai"],
     "porsche": ["porsche"],
     "honda": ["honda"],
     "bmw": ["bmw"],
@@ -197,12 +173,23 @@ MANUFACTURER = {
     "suzuki": ["suzuki"],
     "chevrolet": ["chevrolet"],
     "fiat": ["fiat"],
+    "tesla": ["tesla"],
     "peugeot": ["peugeot"],
     "nissan": ["nissan"],
     "jeep": ["jeep"],
     "mitsubishi": ["mitsubishi"],
     "land rover": ["land rover"],
     "maserati": ["maserati"],
+    "isuzu": ["isuzu"],
+    "mazda": ["mazda"],
+    "aston martin": ["aston martin"],
+    "cadillac": ["cadillac"],
+    "daewoo": ["daewoo"],
+    "jaguar": ["jaguar"],
+    "subaru": ["subaru"],
+    "maybach": ["maybach"],
+    "mclaren": ["mclaren"],
+    "rolls royce": ["rolls royce"],
 }
 
 

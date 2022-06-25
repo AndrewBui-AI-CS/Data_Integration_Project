@@ -6,7 +6,8 @@ import re
 import requests
 import scrapy
 from car_integration.items import CarIntegrationItem
-from car_integration.mapping import mapping, mapping_xe360
+from car_integration.mapping import (mapping, mapping_car_manufacturer,
+                                     mapping_xe360)
 from car_integration.utils import clean_data
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
@@ -100,31 +101,16 @@ class Xe360Spider(scrapy.Spider):
                     'following-sibling::div[@class="canphai"]/text()'
                 ).get()
 
-        # base_details_cantrai = response.xpath('//*[@id="base_details"]/div[@class="cantrai"]')
-        # base_details_canphai = response.xpath('//*[@id="base_details"]/div[@class="canphai"]')
-
-        # for i in range(len(base_details_cantrai)):
-        #     key = mapping(base_details_cantrai[i].xpath('text()').get())
-        #     if not key:
-        #         check = base_details_cantrai[i].xpath('label/text()').get()
-        #         if check:
-        #             key = mapping(check.strip())
-        #     if key:
-        #         data[key] = base_details_canphai[i].xpath('text()').get()
-
-        # thong_so_ky_thuat_cantrai = response.xpath('//*[@id="thongsokythuat"]/div[@class="cantrai"]')
-        # thong_so_ky_thuat_canphai = response.xpath('//*[@id="thongsokythuat"]/div[@class="canphai"]')
-
-        # for i in range(len(thong_so_ky_thuat_cantrai)):
-        #     key = thong_so_ky_thuat_cantrai[i].xpath('label/text()').get()
-        #     if key:
-        #         key = mapping(key.strip())
-        #     if key:
-        #         value = thong_so_ky_thuat_canphai[i].xpath('text()').get()
-        #         if value != 'N/A':
-        #             data[key] = value
 
         data['image'] = response.xpath('//*[@id="gallery"]/img/@data-image').getall()
         data['manufacturer'] = response.xpath('//*[@id="search_make"]/option[@selected="selected"]/text()').get()
+        if len(data["manufacturer"]) != 0:
+            print(data["manufacturer"])
+        else:
+            manufacturer = mapping_car_manufacturer(data["name"])
+            if manufacturer:
+                data["manufacturer"] = manufacturer
+            else:
+                return
         print("Data: ", data)
         yield clean_data(data)

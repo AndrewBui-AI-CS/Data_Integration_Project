@@ -2,7 +2,6 @@ import datetime
 import json
 import re
 
-import pymongo
 import requests
 import scrapy
 from car_integration.items import CarIntegrationItem

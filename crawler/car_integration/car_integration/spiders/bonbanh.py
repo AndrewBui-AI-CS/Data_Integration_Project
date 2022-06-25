@@ -55,7 +55,7 @@ class BonbanhSpider(scrapy.Spider):
             price="",
             # overall_dimension=None,
             # cylinder_capacity=None,
-            fuel = "",
+            fuel="",
             engine="",
             # max_wattage=None,
             fuel_consumption="",
@@ -71,7 +71,6 @@ class BonbanhSpider(scrapy.Spider):
             # fuel_tank_capacity=None,
             # info_contact={},
             status="",
-            
             # # additional crawling
             # xuat_xu="",
             # tinh_trang="",
@@ -92,19 +91,25 @@ class BonbanhSpider(scrapy.Spider):
             "//*[@id='mail_parent'  and (@class='row' or @class='row_last')]"
         )
         for detail in details:
-            key = detail.xpath("div/label/text()").get().strip().replace(':', '')
+            key = detail.xpath("div/label/text()").get().strip().replace(":", "")
             # field = mapping_bonbanh(key) #additional mapping
             field = mapping(key)
             if field:
-                data[field] = detail.xpath("div[2]/span/text()").get().replace('\t', ' ')
-        
-        data['price'] = data['name'].split('-')[-1].strip()
-        regex = '\d{4}'
-        data['mfg'] = re.findall(regex, data['name'])[-1]
-        data['image'] = response.xpath('//div[@id="medium_img"]/a/@href').getall()
-        if (data['engine'].split(' ')[0]): 
-            data['fuel'] = data['engine'].split(' ')[0]
-        data['engine'] = data['engine'].split(' ')[1]
-        data['manufacturer'] = mapping_car_manufacturer(data['name'])
-        print('data', data)
+                data[field] = (
+                    detail.xpath("div[2]/span/text()").get().replace("\t", " ")
+                )
+
+        data["price"] = data["name"].split("-")[-1].strip()
+        regex = "\d{4}"
+        data["mfg"] = re.findall(regex, data["name"])[-1]
+        data["image"] = response.xpath('//div[@id="medium_img"]/a/@href').getall()
+        if data["engine"].split(" ")[0]:
+            data["fuel"] = data["engine"].split(" ")[0]
+        data["engine"] = data["engine"].split(" ")[1]
+        manufacturer = mapping_car_manufacturer(data["name"])
+        if manufacturer:
+            data["manufacturer"] = manufacturer
+        else:
+            return
+        print("data", data)
         yield clean_data(data)
