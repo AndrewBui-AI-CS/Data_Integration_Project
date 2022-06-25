@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Matching</title>
+  <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<br><h2>Tim o to</h2><hr><br>
+
+<div class="container">
+  <div class="row">
+    
+      <table class="table">
+        <thead>
+          <tr class="filters">
+            <th>color
+              <select id="color" class="form-control">
+                <option>Be</option>
+                <option>Bạc</option>
+                <option>Cam</option>
+                <option>Cát</option>
+                <option>Cát sa mạc</option>
+                <option>Ghi</option>
+                <option>Ghi sáng</option>
+                <option>Ghi tối</option>
+                <option>Ghi xanh</option>
+                <option>Hồng</option>
+                <option>Kem</option>
+                <option>Lông chuột</option>
+                <option>Màu khác</option>
+                <option>Mầu khác</option>
+                <option>Mận chín</option>
+                <option>Nhiều màu</option>
+                <option>Nâu</option>
+                <option>Nâu sậm</option>
+                <option>Nòng súng</option>
+                <option>Phấn hồng</option>
+                <option>Trắng</option>
+                <option>Tím</option>
+                <option>Vàng</option>
+                <option>Vàng sâm panh</option>
+                <option>Xanh</option>
+                <option>Xanh dương</option>
+                <option>Xanh dương tối</option>
+                <option>Xanh lá</option>
+                <option>Xanh lá cây</option>
+                <option>Xám</option>
+                <option>Đen</option>
+                <option>Đỏ</option>
+                <option>Đỏ cờ</option>
+                <option>Đỏ đun</option>
+                <option>Đồng</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>drive
+              <select id="drive" class="form-control">
+                <option>4WD - Dẫn động 4 bánh</option>
+                <option>4WD: Dẫn động 4 bánh</option>
+                <option>AWD - 4 bánh toàn thời gian</option>
+                <option>AWD: 4 bánh toàn thời gian</option>
+                <option>Cầu sau (RWD)</option>
+                <option>Cầu trước (FWD)</option>
+                <option>FWD - Dẫn động cầu trước</option>
+                <option>FWD: Dẫn động cầu trước</option>
+                <option>Hai cầu</option>
+                <option>Hai cầu (4WD)</option>
+                <option>Hai cầu (AWD)</option>
+                <option>RFD - Dẫn động cầu sau</option>
+                <option>RWD: Dẫn động cầu sau</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>engine
+              <select id="engine" class="form-control">
+                <option>0.1</option>
+                <option>0.2</option>
+                <option>0.8</option>
+                <option>0.9</option>
+                <option>1</option>
+                <option>1,5</option>
+                <option>1,9</option>
+                <option>1.0</option>
+                <option>1.0 Turbo</option>
+                <option>1.1</option>
+                <option>1.2</option>
+                <option>1.25</option>
+                <option>1.2l</option>
+                <option>1.3</option>
+                <option>1.4</option>
+                <option>1.4 tubor</option>
+                <option>1.4L</option>
+                <option>1.5</option>
+                <option>1.5AT</option>
+                <option>1.6</option>
+                <option>1.6 AT </option>
+                <option>1.6 Tubor</option>
+                <option>1.6AT</option>
+                <option>1.6l</option>
+                <option>1.7</option>
+                <option>1.8</option>
+                <option>1.8AT</option>
+                <option>1.8L</option>
+                <option>11.1</option>
+                <option>1499</option>
+                <option>15000</option>
+                <option>1600</option>
+                <option>2,5</option>
+                <option>2.0</option>
+                <option>2.0 TSI </option>
+                <option>2.0AT</option>
+                <option>2.1</option>
+                <option>2.2</option>
+                <option>2.2 AT</option>
+                <option>2.2L</option>
+                <option>2.3</option>
+                <option>2.3AT</option>
+                <option>2.4</option>
+                <option>2.4G</option>
+                <option>2.4L</option>
+                <option>2.5</option>
+                <option>2.6</option>
+                <option>2.7</option>
+                <option>2.7AT</option>
+                <option>2.7L</option>
+                <option>2.8</option>
+                <option>2.9</option>
+                <option>2000</option>
+                <option>2700</option>
+                <option>3.0</option>
+                <option>3.0 350hp</option>
+                <option>3.0 L</option>
+                <option>3.2</option>
+                <option>3.2AT</option>
+                <option>3.3</option>
+                <option>3.4</option>
+                <option>3.5</option>
+                <option>3.5 </option>
+                <option>3.6</option>
+                <option>3.6L</option>
+                <option>3.8</option>
+                <option>3.9</option>
+                <option>4.0</option>
+                <option>4.0V8</option>
+                <option>4.2</option>
+                <option>4.3</option>
+                <option>4.4</option>
+                <option>4.5</option>
+                <option>4.6</option>
+                <option>4.6v8</option>
+                <option>4.7</option>
+                <option>4.8</option>
+                <option>4600</option>
+                <option>5</option>
+                <option>5.0</option>
+                <option>5.2</option>
+                <option>5.3</option>
+                <option>5.5</option>
+                <option>5.7</option>
+                <option>5.7V8</option>
+                <option>6.0</option>
+                <option>6.2</option>
+                <option>6.6</option>
+                <option>6.75</option>
+                <option>6.8</option>
+                <option>999</option>
+                <option>Bi-turbo 2.0L i4 TDCI</option>
+                <option>Boxer</option>
+                <option>V8</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>fuel
+              <select id="fuel" class="form-control">
+                <option>Dầu</option>
+                <option>Hybrid</option>
+                <option>Xăng</option>
+                <option>Xăng + Điện</option>
+                <option>Điện</option>
+                <option>Động cơ Hybrid</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>fuel_consumption
+              <select id="fuel_consumption" class="form-control">
+                <option> 7 L/100Km</option>
+                <option>0 L/100Km</option>
+                <option>04 L/100Km</option>
+                <option>05 L/100Km</option>
+                <option>06 L/100Km</option>
+                <option>07 L/100Km</option>
+                <option>08 L/100Km</option>
+                <option>09 L/100Km</option>
+                <option>10 L/100Km</option>
+                <option>100 L/100Km</option>
+                <option>11 L/100Km</option>
+                <option>12 L/100Km</option>
+                <option>13 L/100Km</option>
+                <option>14 L/100Km</option>
+                <option>15 L/100Km</option>
+                <option>16 L/100Km</option>
+                <option>18 L/100Km</option>
+                <option>20 L/100Km</option>
+                <option>3 L/100Km</option>
+                <option>4 L/100Km</option>
+                <option>5 L/100Km</option>
+                <option>50 L/100Km</option>
+                <option>57 L/100Km</option>
+                <option>6 L/100Km</option>
+                <option>66000 L/100Km</option>
+                <option>7 L/100Km</option>
+                <option>7.8 L/100Km</option>
+                <option>78 L/100Km</option>
+                <option>8 L/100Km</option>
+                <option>9 L/100Km</option>
+                <option>L/100Km</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>interior_color
+              <select id="interior_color" class="form-control">
+                <option>-</option>
+                <option>Be</option>
+                <option>Bạc</option>
+                <option>Cam</option>
+                <option>Cát</option>
+                <option>Cát sa mạc</option>
+                <option>Ghi</option>
+                <option>Ghi sáng</option>
+                <option>Ghi tối</option>
+                <option>Ghi xanh</option>
+                <option>Hồng</option>
+                <option>Kem</option>
+                <option>Lông chuột</option>
+                <option>Màu khác</option>
+                <option>Mầu khác</option>
+                <option>Mận chín</option>
+                <option>Nhiều màu</option>
+                <option>Nâu</option>
+                <option>Nâu sậm</option>
+                <option>Nòng súng</option>
+                <option>Trắng</option>
+                <option>Vàng</option>
+                <option>Vàng sâm panh</option>
+                <option>Xanh</option>
+                <option>Xanh dương</option>
+                <option>Xám</option>
+                <option>Đen</option>
+                <option>Đỏ</option>
+                <option>Đỏ cờ</option>
+                <option>Đỏ đun</option>
+                <option>Đồng</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>manufacturer
+              <select id="manufacturer" class="form-control">
+                <option>acura</option>
+                <option>asia</option>
+                <option>audi</option>
+                <option>baic</option>
+                <option>bentley</option>
+                <option>bmw</option>
+                <option>byd</option>
+                <option>cadillac</option>
+                <option>chery</option>
+                <option>chevrolet</option>
+                <option>chrysler</option>
+                <option>citroen</option>
+                <option>daewoo</option>
+                <option>daihatsu</option>
+                <option>dodge</option>
+                <option>dongfeng</option>
+                <option>ferrari</option>
+                <option>fiat</option>
+                <option>ford</option>
+                <option>gaz</option>
+                <option>geely</option>
+                <option>haima</option>
+                <option>hãng khác</option>
+                <option>honda</option>
+                <option>hyundai</option>
+                <option>infiniti</option>
+                <option>isuzu</option>
+                <option>jaguar</option>
+                <option>jeep</option>
+                <option>kia</option>
+                <option>lamborghini</option>
+                <option>land rover</option>
+                <option>landrover</option>
+                <option>lexus</option>
+                <option>lifan</option>
+                <option>lincoln</option>
+                <option>luxgen</option>
+                <option>maserati</option>
+                <option>mazda</option>
+                <option>mekong</option>
+                <option>mercedes</option>
+                <option>mercedes benz</option>
+                <option>mg</option>
+                <option>mini</option>
+                <option>mitsubishi</option>
+                <option>nissan</option>
+                <option>peugeot</option>
+                <option>pontiac</option>
+                <option>porsche</option>
+                <option>proton</option>
+                <option>renault</option>
+                <option>rolls royce</option>
+                <option>samsung</option>
+                <option>smart</option>
+                <option>ssangyong</option>
+                <option>subaru</option>
+                <option>suzuki</option>
+                <option>sym</option>
+                <option>tata motors</option>
+                <option>tcm</option>
+                <option>toyota</option>
+                <option>uaz</option>
+                <option>vinfast</option>
+                <option>volkswagen</option>
+                <option>volvo</option>
+                <option>zotye</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>mfg
+              <select id="mfg" class="form-control">
+                <option>1975.0</option>
+                <option>1980.0</option>
+                <option>1984.0</option>
+                <option>1985.0</option>
+                <option>1986.0</option>
+                <option>1987.0</option>
+                <option>1988.0</option>
+                <option>1989.0</option>
+                <option>1990.0</option>
+                <option>1991.0</option>
+                <option>1992.0</option>
+                <option>1993.0</option>
+                <option>1994.0</option>
+                <option>1995.0</option>
+                <option>1996.0</option>
+                <option>1997.0</option>
+                <option>1998.0</option>
+                <option>1999.0</option>
+                <option>2000.0</option>
+                <option>2001.0</option>
+                <option>2002.0</option>
+                <option>2003.0</option>
+                <option>2004.0</option>
+                <option>2005.0</option>
+                <option>2006.0</option>
+                <option>2007.0</option>
+                <option>2008.0</option>
+                <option>2009.0</option>
+                <option>2010.0</option>
+                <option>2011.0</option>
+                <option>2012.0</option>
+                <option>2013.0</option>
+                <option>2014.0</option>
+                <option>2015.0</option>
+                <option>2016.0</option>
+                <option>2017.0</option>
+                <option>2018.0</option>
+                <option>2019.0</option>
+                <option>2020.0</option>
+                <option>2021.0</option>
+                <option>2022.0</option>
+                <option>201559.0</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>origin
+              <select id="origin" class="form-control">
+                <option>Hàn Quốc</option>
+                <option>Khác</option>
+                <option>Lắp ráp trong nước</option>
+                <option>Mỹ</option>
+                <option>Nhập khẩu</option>
+                <option>Nhật Bản</option>
+                <option>Nước khác</option>
+                <option>Thái Lan</option>
+                <option>Trung Quốc</option>
+                <option>Việt Nam</option>
+                <option>Đài Loan</option>
+                <option>Đức</option>
+                <option>Ấn Độ</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>seat
+              <select id="seat" class="form-control">
+                <option>1.0</option>
+                <option>2.0</option>
+                <option>3.0</option>
+                <option>4.0</option>
+                <option>5.0</option>
+                <option>6.0</option>
+                <option>7.0</option>
+                <option>8.0</option>
+                <option>9.0</option>
+                <option>12.0</option>
+                <option>15.0</option>
+                <option>16.0</option>
+                <option>29.0</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>status
+              <select id="status" class="form-control">
+                <option>Cũ</option>
+                <option>Mới</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>transmission
+              <select id="transmission" class="form-control">
+                <option>4</option>
+                <option>5</option>
+                <option>Bán tự động</option>
+                <option>Số Tay</option>
+                <option>Số sàn</option>
+                <option>Số sàn (tay)</option>
+                <option>Số tay</option>
+                <option>Số tự động</option>
+                <option>Tự động</option>
+                <option>None</option>
+              </select>
+            </th>
+            <th>type
+              <select id="type" class="form-control">
+                <option>190</option>
+                <option>2</option>
+                <option>2 Series</option>
+                <option>200</option>
+                <option>2008</option>
+                <option>205</option>
+                <option>3</option>
+                <option>3 Series</option>
+                <option>3008</option>
+                <option>323</option>
+                <option>323F</option>
+                <option>4 Runner</option>
+                <option>4 Series</option>
+                <option>405</option>
+                <option>5</option>
+                <option>5 Series</option>
+                <option>5008</option>
+                <option>520</option>
+                <option>6</option>
+                <option>605</option>
+                <option>626</option>
+                <option>7</option>
+                <option>7 Series</option>
+                <option>911</option>
+                <option>A1</option>
+                <option>A4</option>
+                <option>A6</option>
+                <option>APV</option>
+                <option>Accent</option>
+                <option>Accord</option>
+                <option>Aerio</option>
+                <option>Aerostar</option>
+                <option>Almera</option>
+                <option>Aranos</option>
+                <option>Attrage</option>
+                <option>Avalon</option>
+                <option>Avante</option>
+                <option>Avanza</option>
+                <option>Aveo</option>
+                <option>Azera</option>
+                <option>BT 50</option>
+                <option>Bán tải / Pickup</option>
+                <option>Beetle</option>
+                <option>Bluebird</option>
+                <option>Boxster</option>
+                <option>C Class</option>
+                <option>CD5</option>
+                <option>CLA Class</option>
+                <option>CR V</option>
+                <option>CX 3</option>
+                <option>CX 5</option>
+                <option>CX 8</option>
+                <option>CX 9</option>
+                <option>Cabriolet</option>
+                <option>Camry</option>
+                <option>Captiva</option>
+                <option>Carens</option>
+                <option>Carnival</option>
+                <option>Cayenne</option>
+                <option>Cefiro</option>
+                <option>Cerato</option>
+                <option>Cerato Koup</option>
+                <option>City</option>
+                <option>Civic</option>
+                <option>Clubman</option>
+                <option>Colorado</option>
+                <option>Colt</option>
+                <option>Continental</option>
+                <option>Convertible/Cabriolet</option>
+                <option>Convertibles</option>
+                <option>Cooper</option>
+                <option>Corolla</option>
+                <option>Corolla Altis</option>
+                <option>Corolla Cross</option>
+                <option>Corona</option>
+                <option>Coupe</option>
+                <option>Coupe (2 cửa)</option>
+                <option>Cressida</option>
+                <option>Creta</option>
+                <option>Crossover</option>
+                <option>Crown</option>
+                <option>Cruze</option>
+                <option>DS3</option>
+                <option>Defender</option>
+                <option>Dmax</option>
+                <option>Dòng khác</option>
+                <option>E Class</option>
+                <option>ES</option>
+                <option>EcoSport</option>
+                <option>Elantra</option>
+                <option>Emgrand</option>
+                <option>Ertiga</option>
+                <option>Escape</option>
+                <option>Everest</option>
+                <option>Explorer</option>
+                <option>Fadil</option>
+                <option>Family</option>
+                <option>Fastback</option>
+                <option>Fiesta</option>
+                <option>Focus</option>
+                <option>Forte</option>
+                <option>Fortuner</option>
+                <option>Fortwo</option>
+                <option>G Class</option>
+                <option>GL Class</option>
+                <option>GLA Class</option>
+                <option>GLC</option>
+                <option>GLC Class</option>
+                <option>GLE Class</option>
+                <option>GLS Class</option>
+                <option>GS</option>
+                <option>GX</option>
+                <option>Galloper</option>
+                <option>Genesis</option>
+                <option>Gentra</option>
+                <option>Getz</option>
+                <option>Grand Starex</option>
+                <option>Grand i10</option>
+                <option>Grandis</option>
+                <option>HR-V</option>
+                <option>HS</option>
+                <option>Hatchback</option>
+                <option>Hi lander</option>
+                <option>Hiace</option>
+                <option>Hilux</option>
+                <option>Hybrid</option>
+                <option>IS</option>
+                <option>Innova</option>
+                <option>Jazz</option>
+                <option>Jolie</option>
+                <option>K3</option>
+                <option>K5</option>
+                <option>Kiểu dáng khác</option>
+                <option>Kona</option>
+                <option>Korando</option>
+                <option>L300</option>
+                <option>LM350</option>
+                <option>LS</option>
+                <option>LX</option>
+                <option>Lacetti</option>
+                <option>Lancer</option>
+                <option>Land Cruiser</option>
+                <option>Land Cruiser Prado</option>
+                <option>Lanos</option>
+                <option>Laser</option>
+                <option>Leganza</option>
+                <option>Legend</option>
+                <option>Levante</option>
+                <option>Liteace</option>
+                <option>Livina</option>
+                <option>Lux</option>
+                <option>M7</option>
+                <option>MPV</option>
+                <option>Magnus</option>
+                <option>Matiz</option>
+                <option>Maxcruz</option>
+                <option>Maxima</option>
+                <option>Minivan</option>
+                <option>Minivan (MPV)</option>
+                <option>Mondeo</option>
+                <option>Morning</option>
+                <option>Mu X</option>
+                <option>Mui trần</option>
+                <option>Musso</option>
+                <option>NQR</option>
+                <option>NX</option>
+                <option>Navara</option>
+                <option>Navigator</option>
+                <option>Nubira</option>
+                <option>Optima</option>
+                <option>Orlando</option>
+                <option>Outlander</option>
+                <option>Pajero</option>
+                <option>Pajero Sport</option>
+                <option>Panamera</option>
+                <option>Passat</option>
+                <option>Picanto</option>
+                <option>Pick-up (bán tải)</option>
+                <option>Pikup</option>
+                <option>Polo</option>
+                <option>Prado</option>
+                <option>Premacy</option>
+                <option>Previa</option>
+                <option>Pride</option>
+                <option>Q5</option>
+                <option>Q7</option>
+                <option>QKR</option>
+                <option>RAV4</option>
+                <option>RX</option>
+                <option>Raize</option>
+                <option>Range Rover</option>
+                <option>Range Rover Evoque</option>
+                <option>Range Rover Sport</option>
+                <option>Range Rover Velar</option>
+                <option>Range Rover Vogue</option>
+                <option>Ranger</option>
+                <option>Rexton</option>
+                <option>Rio</option>
+                <option>Roadster</option>
+                <option>Rondo</option>
+                <option>Rush</option>
+                <option>S Class</option>
+                <option>SUV</option>
+                <option>SUV / Cross over</option>
+                <option>Santa Fe</option>
+                <option>Sedan</option>
+                <option>Sedona</option>
+                <option>Seltos</option>
+                <option>Sequoia</option>
+                <option>Siena</option>
+                <option>Sienna</option>
+                <option>Solati</option>
+                <option>Soluto</option>
+                <option>Sonata</option>
+                <option>Sonet</option>
+                <option>Sorento</option>
+                <option>Soul</option>
+                <option>Spark</option>
+                <option>Spectra</option>
+                <option>Sportage</option>
+                <option>Sprinter</option>
+                <option>Starex</option>
+                <option>Sunny</option>
+                <option>Swift</option>
+                <option>T600</option>
+                <option>TT</option>
+                <option>Tercel</option>
+                <option>Terios</option>
+                <option>Terracan</option>
+                <option>Tourneo</option>
+                <option>Trailblazer</option>
+                <option>Transit</option>
+                <option>Triton</option>
+                <option>Truck</option>
+                <option>Tucson</option>
+                <option>V Class</option>
+                <option>VFe34</option>
+                <option>Van</option>
+                <option>Van/Minivan</option>
+                <option>Veloster</option>
+                <option>Veloz</option>
+                <option>Venza</option>
+                <option>Verna</option>
+                <option>Vios</option>
+                <option>Vitara</option>
+                <option>Vivant</option>
+                <option>Wagon</option>
+                <option>Wagon R+</option>
+                <option>Wigo</option>
+                <option>Wind star</option>
+                <option>X Terra</option>
+                <option>X1</option>
+                <option>X4</option>
+                <option>X5</option>
+                <option>XC90</option>
+                <option>XG</option>
+                <option>XJ series</option>
+                <option>XL 7</option>
+                <option>Xpander</option>
+                <option>Xpander Cross</option>
+                <option>Yaris</option>
+                <option>ZS</option>
+                <option>Zace</option>
+                <option>Zinger</option>
+                <option>i20</option>
+                <option>i30</option>
+                <option>None</option>
+              </select>
+            </th>
+      
+          </tr>
+        </thead>
+      </table>
+    
+    
+    <div class="panel panel-primary filterable">
+      <div class="panel-heading">
+        <h3 class="panel-title">Oto</h3>
+        <div class="pull-right"></div>
+      </div>
+
+      
+      
+      
+      
+      <table id="task-list-tbl" class="table">
+        <thead>
+          <tr>
+            <th>color</th>
+            <th>drive</th>
+            <th>engine</th>
+            <th>fuel</th>
+            <th>fuel_consumption</th>
+            <th>interior_color</th>
+            <th>manufacturer</th>
+            <th>mfg</th>
+            <th>origin</th>
+            <th>seat</th>
+            <th>status</th>
+            <th>transmission</th>
+            <th>type</th>
+          <tr>
+        </thead>
+        
+        <tbody>
+          
+          <tr id="task-2"
+              class="color"
+              data-task-id="1">
+            <td>Xanh</td>
+            <td>FWD - Dẫn động cầu trước</td>
+            <td>2.4</td>
+            <td>Xăng</td>
+            <td>L/100Km</td>
+            <td>Kem</td>
+            <td>kia</td>
+            <td>2019.0</td>
+            <td>Lắp ráp trong nước</td>
+            <td>7.0</td>
+            <td>Cũ</td>
+            <td>Số tự động</td>
+            <td>SUV</td>
+          </tr>
+
+          <tr id="task-2"
+              class="color"
+              data-task-id="2">
+            <td>Nâu</td>
+            <td>RFD - Dẫn động cầu sau</td>
+            <td>2.0</td>
+            <td>Xăng</td>
+            <td>L/100Km</td>
+            <td>Đen</td>
+            <td>vinfast</td>
+            <td>2021.0</td>
+            <td>Lắp ráp trong nước</td>
+            <td>7.0</td>
+            <td>Cũ</td>
+            <td>Số tự động</td>
+            <td>SUV</td>
+          </tr>
+
+          <tr id="task-2"
+              class="color"
+              data-task-id="3">
+            <td>Đỏ</td>
+            <td>RFD - Dẫn động cầu sau</td>
+            <td>2.0</td>
+            <td>Xăng</td>
+            <td>L/100Km</td>
+            <td>Nâu</td>
+            <td>vinfast</td>
+            <td>2019.0</td>
+            <td>Lắp ráp trong nước</td>
+            <td>7.0</td>
+            <td>Cũ</td>
+            <td>Số tự động</td>
+            <td>SUV</td>
+          </tr>
+
+          <tr id="task-2"
+              class="color"
+              data-task-id="4">
+            <td>Xanh</td>
+            <td>4WD - Dẫn động 4 bánh</td>
+            <td>2.0</td>
+            <td>Dầu</td>
+            <td>L/100Km</td>
+            <td>Đen</td>
+            <td>ford</td>
+            <td>2020.0</td>
+            <td>Nhập khẩu</td>
+            <td>5.0</td>
+            <td>Cũ</td>
+            <td>Số tự động</td>
+            <td>Bán tải / Pickup</td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
