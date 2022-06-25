@@ -2,13 +2,12 @@ import datetime
 
 import requests
 import scrapy
-import scrapy_splash
 from car_integration.items import CarIntegrationItem
-from car_integration.mapping import mapping, mapping_xechotot
+from car_integration.mapping import (mapping, mapping_car_manufacturer,
+                                     mapping_xechotot)
 from car_integration.utils import clean_data
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
-from scrapy_splash import SplashRequest
 
 
 class XeChoTotSpider(scrapy.Spider):
@@ -65,7 +64,7 @@ class XeChoTotSpider(scrapy.Spider):
             image=[],
             # overall_dimension=None,
             # cylinder_capacity=None,
-            fuel = "",
+            fuel="",
             engine="",
             # max_wattage=None,
             fuel_consumption="",
@@ -74,7 +73,7 @@ class XeChoTotSpider(scrapy.Spider):
             seat=None,
             manufacturer="",
             type="",
-            category = "",
+            category="",
             color="",
             interior_color="",
             mfg=None,
@@ -83,7 +82,6 @@ class XeChoTotSpider(scrapy.Spider):
             # fuel_tank_capacity=None,
             # info_contact={"address": response.xpath('//span[@class="fz13"]/text()')},
             status="",
-
             # # addtional crawling
             # hang = "",
             # nam_san_xuat = "",
@@ -106,7 +104,14 @@ class XeChoTotSpider(scrapy.Spider):
             if field:
                 data[field] = detail.xpath("span/span[2]/text()").get()
 
-        data['image'] = response.xpath('//img[@role="presentation"]/@src').getall()
-        
+        data["image"] = response.xpath('//img[@role="presentation"]/@src').getall()
+        if len(data["manufacturer"]) != 0:
+            print(data["manufacturer"])
+        else:
+            manufacturer = mapping_car_manufacturer(data["name"])
+            if manufacturer:
+                data["manufacturer"] = manufacturer
+            else:
+                return
         print("Data: ", data)
         yield clean_data(data)

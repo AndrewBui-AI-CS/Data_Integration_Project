@@ -7,7 +7,8 @@ from pydoc import resolve
 import requests
 import scrapy
 from car_integration.items import CarIntegrationItem
-from car_integration.mapping import mapping, mapping_choxeotofun
+from car_integration.mapping import (mapping, mapping_car_manufacturer,
+                                     mapping_choxeotofun)
 from car_integration.utils import clean_data
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
@@ -60,7 +61,7 @@ class ChoxeotofunSpider(scrapy.Spider):
             image=[],
             # overall_dimension=None,
             # cylinder_capacity=None,
-            fuel = "",
+            fuel="",
             engine="",
             # max_wattage=None,
             fuel_consumption="",
@@ -100,18 +101,14 @@ class ChoxeotofunSpider(scrapy.Spider):
             if field:
                 data[field] = details[i + 1]
 
-        # data['info_contact']['address'] = response.xpath('//div[@class="address"]/text()').get()
-        # data['info_contact']['name'] = response.xpath('//div[@class="name"]/text()').get()
-        # try:
-        #     if data['manufacturer'].lower() not in self.list_manufacturer['manufacturer'].keys():
-        #         print(data['source'], data['manufacturer'])
-        #         return
-        #     else:
-        #         data['manufacturer'] = data['manufacturer'].lower()
-        #         data['name'] = data['name'].upper()
-        # except Exception as e:
-        #     print(e)
-        #     return
+        if len(data["manufacturer"]) != 0:
+            print(data["manufacturer"])
+        else:
+            manufacturer = mapping_car_manufacturer(data["name"])
+            if manufacturer:
+                data["manufacturer"] = manufacturer
+            else:
+                return
         data["status"] = response.xpath('//div[@class="condition"]/text()[2]').get()
         print("data: ", data)
 
