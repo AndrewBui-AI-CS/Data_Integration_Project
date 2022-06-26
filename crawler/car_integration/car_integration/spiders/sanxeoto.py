@@ -32,10 +32,10 @@ class SonxeotoSpider(scrapy.Spider):
                 url=product,
                 callback=self.parse_product
             )
-        # next_page = "https://sanxeoto.com/mua-ban-oto/{}".format(self.next_page_number)
-        # self.next_page_number += 1
-        # if (self.next_page_number == 150): return 
-        # yield scrapy.Request(url = next_page, callback=self.parse)
+        next_page = "https://sanxeoto.com/mua-ban-oto/{}".format(self.next_page_number)
+        self.next_page_number += 1
+        if (self.next_page_number == 150): return 
+        yield scrapy.Request(url = next_page, callback=self.parse)
 
     def parse_product(self, response):
         data = CarIntegrationItem(
