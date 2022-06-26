@@ -2,6 +2,7 @@ import re
 
 FIELD = {
     "engine": [
+        "Loại động cơ",
         "động cơ",
         "dung tích xy lanh",
         "dung tích xi lanh (cc)",
