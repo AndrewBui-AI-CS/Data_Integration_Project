@@ -1,13 +1,10 @@
 import datetime
-import json
 import re
 
-import requests
 import scrapy
 from car_integration.items import CarIntegrationItem
 from car_integration.mapping import mapping, mapping_car_manufacturer
 from car_integration.utils import clean_data
-from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
 
 KEY_XPATH = 'text()'
