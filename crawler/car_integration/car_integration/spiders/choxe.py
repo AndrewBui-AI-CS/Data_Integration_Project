@@ -59,7 +59,7 @@ class ChoxeSpider(scrapy.Spider):
         data["mfg"] = re.findall(regex, data["name"])[-1]
         data["manufacturer"] = mapping_car_manufacturer(data["name"])
         
-        yield data
+        yield clean_data(data)
 
     def extract_details(self, data, details, name_xpath, value_xpath):
         for detail in details:
