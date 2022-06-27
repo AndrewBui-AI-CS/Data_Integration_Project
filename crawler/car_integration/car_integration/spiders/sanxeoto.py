@@ -69,7 +69,7 @@ class SonxeotoSpider(scrapy.Spider):
             data["mfg"] = ''
         data["manufacturer"] = mapping_car_manufacturer(data["name"])
         
-        yield data
+        yield clean_data(data)
 
     def extract_details(self, data, details, name_xpath, value_xpath):
         for detail in details:

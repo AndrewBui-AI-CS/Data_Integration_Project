@@ -46,7 +46,7 @@ MONGODB_PORT = 27017
 MONGODB_DB = "car"
 MONGODB_COLLECTION = "car"
 MONGODB_COLLECTION_CONFIG = "config"
-MONGODB_URI = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+MONGODB_URI = "mongodb+srv://viethoang:viethoang@cluster0.sewuz.mongodb.net/?retryWrites=true&w=majority"
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
 
@@ -93,8 +93,8 @@ SPIDER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
        'car_integration.pipelines.DefaultValuesPipeline': 300,
-    # "car_integration.pipelines.MongoDBPipeline": 300,
-    #    'car_integration.pipelines.KafkaPipeline': 100,
+    "car_integration.pipelines.MongoDBPipeline": 100,
+    #    'car_integration.pipelines.KafkaPipeline': 1,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

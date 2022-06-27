@@ -111,5 +111,4 @@ class BonbanhSpider(scrapy.Spider):
             data["manufacturer"] = manufacturer
         else:
             return
-        print("data", data)
         yield clean_data(data)

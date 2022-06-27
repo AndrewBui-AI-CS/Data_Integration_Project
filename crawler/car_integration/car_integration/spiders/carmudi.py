@@ -9,6 +9,8 @@ from car_integration.mapping import mapping, mapping_car_manufacturer
 from car_integration.utils import clean_data
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
+from car_integration.utils import clean_data
+
 
 LIST_PRODUCT_XPATH = '//*[@class="list-info"]/div[1]/a/@href'
 TABLE_ROW_DETAILS_XPATH = '//*[@id="properites"]/div[2]/div/table/tbody/tr'
@@ -114,7 +116,7 @@ class CarmudiSpider(scrapy.Spider):
         data["image"] = response.xpath('//div[@id="medium_img"]/a/@href').getall()
         data["manufacturer"] = mapping_car_manufacturer(data["name"])
         
-        yield data
+        yield clean_data(data)
 
     def extract_details(self, data, details, name_xpath, value_xpath):
         
