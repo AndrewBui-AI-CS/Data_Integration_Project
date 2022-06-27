@@ -27,7 +27,7 @@ class CarmudiSpider(scrapy.Spider):
     name = "carmudi"
     allowed_domains = ["carmudi.vn"]
     base_url = "https://www.carmudi.vn"
-    start_urls = [base_url + "/mua-ban-o-to"]
+    start_urls = [base_url + "/mua-ban-o-to", base_url + "/mua-ban-o-to-cu"]
     settings = get_project_settings()
     next_page_number = 2
 
