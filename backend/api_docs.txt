@@ -1,0 +1,24 @@
+Mô tả: Lấy về thông tin các trường theo filter
+API: http://192.168.0.108:5000/filter
+Methods: GET
+
+Params:
+- category: danh mục 
+- color: màu
+- drive: dẫn động
+- engine: động cơ
+- fuel: nhiên liệu
+- fuel_consumption: mức tiêu hao nhiên liệu
+- interior_color: màu nội thất
+- manufacturer: nhà sản xuất
+- mfg: năm sản xuất
+- mfg_sort: kiểu sort (tăng dần hoặc giảm dần)
+- price: giá
+- price_sort: kiểu sort (tăng dần hoặc giảm dần)
+- seat: số chỗ ngồi
+- seat_sort: kiểu sort (tăng dần hoặc giảm dần)
+- status: tình trạng xe
+- transmission: hộp số
+- type: kiểu dáng/ dòng xe
+
+Example: http://192.168.0.108:5000/filter?color=Xanh&mfg=2022&mfg_sort=lt
