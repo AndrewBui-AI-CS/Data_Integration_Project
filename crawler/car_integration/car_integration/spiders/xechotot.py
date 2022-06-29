@@ -100,6 +100,8 @@ class XeChoTotSpider(scrapy.Spider):
         for detail in details:
             key = detail.xpath("span/span/text()").get().strip().replace(":", "")
             # field = mapping_xechotot(key) #additional mapping
+            if (key.lower() == 'dòng xe'):
+                key = 'mẫu xe'
             field = mapping(key)
             if field:
                 data[field] = detail.xpath("span/span[2]/text()").get()

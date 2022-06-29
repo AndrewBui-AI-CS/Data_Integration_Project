@@ -93,7 +93,7 @@ SPIDER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
        'car_integration.pipelines.DefaultValuesPipeline': 300,
-    "car_integration.pipelines.MongoDBPipeline": 100,
+    # "car_integration.pipelines.MongoDBPipeline": 100,
     #    'car_integration.pipelines.KafkaPipeline': 1,
 }
 

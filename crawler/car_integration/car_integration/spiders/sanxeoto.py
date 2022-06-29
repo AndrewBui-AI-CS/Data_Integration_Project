@@ -56,17 +56,18 @@ class SonxeotoSpider(scrapy.Spider):
             color="",
             km="",
             mfg=None,
-            status=""
+            status="",
+            category=""
         )
         details = response.xpath('/html/body/section[1]/div/div/div/div[2]/aside/div[1]/div')
         general = response.xpath('/html/body/section[1]/div/div/div/div[1]/div/div[2]/div')
         self.extract_details(data, general, KEY_GENERAL_XPATH, VALUE_GENERAL_XPATH)
         self.extract_details(data, details, KEY_XPATH, VALUE_XPATH)
         regex = "\d{4}"
-        try:
-            data["mfg"] = re.findall(regex, data["name"])[-1]
-        except:
-            data["mfg"] = ''
+        # try:
+        #     data["mfg"] = re.findall(regex, data["name"])[-1]
+        # except:
+        #     data["mfg"] = ''
         data["manufacturer"] = mapping_car_manufacturer(data["name"])
         
         yield clean_data(data)
@@ -74,6 +75,8 @@ class SonxeotoSpider(scrapy.Spider):
     def extract_details(self, data, details, name_xpath, value_xpath):
         for detail in details:
             key = detail.xpath(name_xpath).get().strip().replace(":", "")
+            if (key.lower() == 'dòng xe'):
+                key = 'mẫu xe'
             field = mapping(key)
             if field:
                 data[field] = (

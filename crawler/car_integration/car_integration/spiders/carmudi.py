@@ -9,16 +9,14 @@ from car_integration.mapping import mapping, mapping_car_manufacturer
 from car_integration.utils import clean_data
 from scrapy.http import HtmlResponse
 from scrapy.utils.project import get_project_settings
-from car_integration.utils import clean_data
-
 
 LIST_PRODUCT_XPATH = '//*[@class="list-info"]/div[1]/a/@href'
 TABLE_ROW_DETAILS_XPATH = '//*[@id="properites"]/div[2]/div/table/tbody/tr'
-TABLE_DATA_KEY_XPATH = 'td/strong/text()'
-TABLE_DATA_VALUE_XPATH = 'td[2]/text()'
+TABLE_DATA_KEY_XPATH = "td/strong/text()"
+TABLE_DATA_VALUE_XPATH = "td[2]/text()"
 DETAILS_XPATH_V2 = '//*[@id="controller_area"]/div[1]/div[1]/div[4]/div'
-NAME_XPATH_V2 = 'text()'
-VALUE_XPATH_V2 = 'span'
+NAME_XPATH_V2 = "text()"
+VALUE_XPATH_V2 = "span"
 CARNAME_V1 = '//*[@id="pages-title-name"]/text()'
 CARNAME_V2 = '//*[@id="controller_area"]/div[1]/div[1]/div[2]/h1/text()'
 
@@ -39,7 +37,6 @@ class CarmudiSpider(scrapy.Spider):
                 callback=self.parse_product,
                 # cb_kwargs=dict(price=price),
             )
-        next_page = "https://bonbanh.com/oto/page,{}".format(self.next_page_number)
         self.next_page_number += 1
         if self.next_page_number == 501:
             return
@@ -68,7 +65,7 @@ class CarmudiSpider(scrapy.Spider):
     def parse_product(self, response):
         data = CarIntegrationItem(
             source=response.request.url,
-            name='',
+            name="",
             base_url=self.base_url,
             time_update=datetime.datetime.utcnow(),
             image=[],
@@ -81,58 +78,76 @@ class CarmudiSpider(scrapy.Spider):
             seat=None,
             manufacturer="",
             type="",
+            category="",
             color="",
             km="",
             mfg=None,
-            status=""
+            status="",
         )
 
         details_v1 = response.xpath(TABLE_ROW_DETAILS_XPATH)
         details_v2 = response.xpath(DETAILS_XPATH_V2)
 
         if len(details_v1) != 0:
-            self.extract_details(data, details_v1, TABLE_DATA_KEY_XPATH, TABLE_DATA_VALUE_XPATH)
+            self.extract_details(
+                data, details_v1, TABLE_DATA_KEY_XPATH, TABLE_DATA_VALUE_XPATH
+            )
         else:
             self.extract_details(data, details_v2, NAME_XPATH_V2, VALUE_XPATH_V2)
-        
+
         name_v1 = response.xpath(CARNAME_V1)
         name_v2 = response.xpath(CARNAME_V2)
-        if len(name_v1) != 0 :
-            data['name'] = name_v1.get()
+        if len(name_v1) != 0:
+            data["name"] = name_v1.get()
         else:
-            data['name'] = name_v2.get()
-
+            data["name"] = name_v2.get()
 
         price_v1 = response.xpath('//*[@id="car-price"]/text()')
-        price_v2 = response.xpath('//*[@id="controller_area"]/div[1]/div[1]/div[3]/div[2]/text()')
-        
-        data['price'] = price_v1.get().replace('\n','') if len(price_v1) else price_v2.get().replace('\n','')
-        
+        price_v2 = response.xpath(
+            '//*[@id="controller_area"]/div[1]/div[1]/div[3]/div[2]/text()'
+        )
+
+        data["price"] = (
+            price_v1.get().replace("\n", "")
+            if len(price_v1)
+            else price_v2.get().replace("\n", "")
+        )
+
         regex = "\d{4}"
-        try:
-            data["mfg"] = re.findall(regex, data["name"])[-1]
-        except:
-            data['mfg'] = ''
+        # try:
+        #     data["mfg"] = re.findall(regex, data["name"])[-1]
+        # except:
+        #     data['mfg'] = ''
         data["image"] = response.xpath('//div[@id="medium_img"]/a/@href').getall()
         data["manufacturer"] = mapping_car_manufacturer(data["name"])
-        
+
         yield clean_data(data)
 
     def extract_details(self, data, details, name_xpath, value_xpath):
-        
+
         for detail in details:
-            if(len(detail.xpath(name_xpath).getall()) > 1):
-                key = ''.join(detail.xpath(name_xpath).getall()).strip().replace('\n','').split(':')[0]
+            if len(detail.xpath(name_xpath).getall()) > 1:
+                key = (
+                    "".join(detail.xpath(name_xpath).getall())
+                    .strip()
+                    .replace("\n", "")
+                    .split(":")[0]
+                )
             else:
                 key = detail.xpath(name_xpath).get().strip()
-            remove_html_key = re.sub('<[^>]*>', '', key)
+            remove_html_key = re.sub("<[^>]*>", "", key)
+            if remove_html_key.lower() == "dòng xe":
+                remove_html_key = "mẫu xe"
             field = mapping(remove_html_key)
             if field:
                 value = detail.xpath(value_xpath).get()
                 if value == None:
-                    value = ''.join(detail.xpath(name_xpath).getall()).strip().replace('\n','').split(': ')[-1]
+                    value = (
+                        "".join(detail.xpath(name_xpath).getall())
+                        .strip()
+                        .replace("\n", "")
+                        .split(": ")[-1]
+                    )
                     data[field] = value
                 else:
-                    data[field] = (
-                        re.sub('<[^>]*>', '', value.replace("\t", " "))
-                    )
+                    data[field] = re.sub("<[^>]*>", "", value.replace("\t", " "))
