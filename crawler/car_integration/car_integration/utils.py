@@ -111,7 +111,7 @@ def clean_data(data: CarIntegrationItem):
 
     data['manufacturer'] = data['manufacturer'].lower()
     data["name"] = " ".join(data["name"].split())
-    if (data["origin"].lower().strip() == 'việt nam' or data["origin"].lower().strip() == 'lắp ráp trong nước'):
+    if (data["origin"].lower().strip() == 'việt nam' or data["origin"].lower().strip() == 'lắp ráp trong nước' or data["origin"].lower().strip() == 'lắp ráp'):
         data["origin"] = 'trong nước'
     elif len(data["origin"]) == 0:
         data["origin"] = ''

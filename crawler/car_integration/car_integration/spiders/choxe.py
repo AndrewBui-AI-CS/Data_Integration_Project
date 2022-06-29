@@ -1,5 +1,6 @@
 import datetime
 import re
+from unicodedata import category
 
 import scrapy
 from car_integration.items import CarIntegrationItem
@@ -51,12 +52,14 @@ class ChoxeSpider(scrapy.Spider):
             color="",
             km="",
             mfg=None,
-            status=""
+            status="",
+            category=""
         )
         details = response.xpath('/html/body/div[3]/div[1]/div[1]/div[4]/div')
         self.extract_details(data, details, KEY_XPATH, VALUE_XPATH)
         regex = "\d{4}"
-        data["mfg"] = re.findall(regex, data["name"])[-1]
+        if (len(data['mfg']) == 0):
+            data["mfg"] = re.findall(regex, data["name"])[-1]
         data["manufacturer"] = mapping_car_manufacturer(data["name"])
         
         yield clean_data(data)
