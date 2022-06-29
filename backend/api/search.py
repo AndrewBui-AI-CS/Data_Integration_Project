@@ -39,20 +39,33 @@ def create_app():
             if key == 'seat':
                 if request_fields['seat_sort'] == 'gt':
                     query[key] = {'$gt': int(value)}
+                    continue
                 elif request_fields['seat_sort'] == 'lt':
                     query[key] = {'$lt': int(value)}
+                    continue
                     
             if key == 'mfg':
                 if request_fields['mfg_sort'] == 'gt':
                     query[key] = {'$gt': int(value)}
+                    continue
                 elif request_fields['mfg_sort'] == 'lt':
                     query[key] = {'$lt': int(value)}
+                    continue
     
             if key in ['price_sort', 'seat_sort', 'mfg_sort']:
                 continue
             
             if value is not None:
-                query[str(key)] = value
+                if value in ['price', 'seat', 'mfg']:
+                    query[str(key)] = int(value)
+                else:
+                    query[str(key)] = value
+                    
+        for key, value in query.items():
+            if type(value) is dict:
+                continue
+            if value.isnumeric():
+                query[key] = int(value)
         car_cursor = list(car_filter.car_db.find(query))
         result = get_result_format(car_cursor)
         return result
