@@ -1,5 +1,5 @@
 Mô tả: Lấy về thông tin các trường theo filter
-API: http://192.168.0.108:5000/filter
+API: http://127.0.0.1:5000/filter
 Methods: GET
 
 Params:
@@ -21,4 +21,4 @@ Params:
 - transmission: hộp số
 - type: kiểu dáng/ dòng xe
 
-Example: http://192.168.0.108:5000/filter?color=Xanh&mfg=2022&mfg_sort=lt
+Example: http://127.0.0.1:5000/filter?color=Xanh&mfg=2022&mfg_sort=lt
