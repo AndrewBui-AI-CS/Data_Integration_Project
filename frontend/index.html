@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quản lý xe</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<h4 class="container titlePage">Tìm kiếm ô tô</h4>
+<div class="d-flex filterRow justify-content-between container align-items-center my-3">
+    <div class="input-group">
+        <label>Hãng xe:</label>
+        <select class="form-select" id="search-input">
+            <option selected value='kia'>Kia</option>
+            <option value='vinfast'>Vinfast</option>
+            <option value='ford'>Ford</option>
+            <option value='hyundai'>Hyundai</option>
+            <option value='lexus'>Lexus</option> 
+            <option value='nissan'>Nissan</option> 
+            <option value='mitsubishi'>Mitsubishi</option> 
+            <option value='toyota'>Toyota</option> 
+            <option value='chevrolet'>Chevrolet</option> 
+            <option value='honda'>Honda</option> 
+            <option value='bmw'>Bmw</option> 
+            <option value='mercedes'>Mercedes</option> 
+            <option value='maserati'>Maserati</option> 
+            <option value='peugeot'>Peugeot</option> 
+            <option value='porsche'>Porsche</option> 
+            <option value='volkswagen'>Volkswagen</option> 
+            <option value='volvo'>Volvo</option> 
+            <option value='suzuki'>Suzuki</option> 
+            <option value='audi'>Audi</option> 
+            <option value='jeep'>Jeep</option> 
+            <option value='bentley'>Bentley</option> 
+            <option value='lamborghini'>Lamborghini</option> 
+            <option value='fiat'>Fiat</option> 
+            <option value='ferrari'>Ferrari</option> 
+        </select>
+    </div>
+    <div class="input-group">
+        <label>Giá tiền:</label>
+        <input type="number" id="quantity" name="quantity" class="form-control" placeholder="Giá tiền dưới">
+    </div>
+    <div class="input-group">
+        <label>Số chỗ ngồi:</label>
+        <select class="form-select" id="slotCar">
+            <option selected value=4>4 chỗ</option>
+            <option value=5>5 chỗ</option>
+            <option value=6>6 chỗ</option>
+            <option value=7>7 chỗ</option>
+            <option value=8>8 chỗ</option>
+            <option value=15>15 chỗ</option>
+            <option value=16>16 chỗ</option>
+            <option value=29>29 chỗ</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <label>Tình trạng xe:</label>
+        <select class="form-select" id="statusCar">
+            <option selected value="Mới">Mới</option>
+            <option value="Cũ">Cũ</option>
+        </select>
+    </div>
+    <button class="search-btn" onclick="search()">Tìm kiếm</button>
+</div>
+<div class="container">
+    <div id="cardWrapper">
+
+    </div>
+</div>
+</body>
+<script>
+    let data;
+
+    const getData = async () => {
+        const response = await fetch("./car.json");
+        const res = await response.json();
+        data = res;
+        return res;
+    };
+
+    (async () => {
+        await getData();
+    })();
+
+    function search() {
+        const wrapper = document.getElementById("cardWrapper");
+        while (wrapper.hasChildNodes()) {
+            wrapper.removeChild(wrapper.firstChild);
+        }
+        let searchInput = document.getElementById("search-input").value;
+        let priceInput = document.getElementById("quantity").value;
+        let statusCar = document.getElementById("statusCar").value;
+        let slotCar = document.getElementById("slotCar").value;
+        let searchArr = [...data];
+        for (let i = 0; i < searchArr.length; i++) {
+            if (searchArr[i] !== null) {
+                if (searchArr[i].manufacturer != searchInput) {
+                    searchArr[i] = null;
+                }
+            }
+        }
+        for (let i = 0; i < searchArr.length; i++) {
+            if (searchArr[i] !== null) {
+                if (searchArr[i].price.$numberLong) {
+                    searchArr[i] = null;
+                } else {
+                    if (searchArr[i].price > parseInt(priceInput, 10)) {
+                        searchArr[i] = null;
+                    }
+                }
+            }
+        }
+        for (let i = 0; i < searchArr.length; i++) {
+            if (searchArr[i] !== null) {
+                if (searchArr[i].seat != slotCar) {
+                    searchArr[i] = null;
+                }
+            }
+        }
+        for (let i = 0; i < searchArr.length; i++) {
+            if (searchArr[i] !== null) {
+                if (searchArr[i].status != statusCar) {
+                    searchArr[i] = null;
+                }
+            }
+        }
+        for (let i = 0; i < searchArr.length; i++) {
+            if (searchArr[i] !== null) {
+                var card = document.createElement("div");
+                card.className = "cardWrapper";
+                card.id = "cardWrapper" + i;
+                card.innerHTML = '<div class="card" style="width: 19rem; min-height: 100%">\n' +
+                    '  <img src=" ' + searchArr[i].image[3] + '" class="card-img-top" alt="...">\n' +
+                    '  <div class="card-body">\n' +
+                    '    <h5 class="card-title">' + searchArr[i].name + '</h5>\n' +
+                    '    <p class="card-text">' + 'Màu: ' + searchArr[i].color + '<br>\nXuất xứ: ' + searchArr[i].origin + '<br>\nODO: ' + searchArr[i].km + '<br>\nHệ thống treo: ' + searchArr[i].drive + '<br>\nHãng xe: ' + searchArr[i].manufacturer + '<br>\nTình trạng xe: ' + searchArr[i].status + '<br>\nSố chỗ ngồi: ' + searchArr[i].seat + '<br>\nGiá tiền: ' + numberWithCommas(searchArr[i].price) + ' VNĐ</p>\n' +
+                    '    <a href="#" class="btn btn-primary">Mua ngay</a>\n' +
+                    '  </div>\n' +
+                    '</div>'
+                wrapper.append(card);
+            }
+        }
+    }
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+</script>
+</html>

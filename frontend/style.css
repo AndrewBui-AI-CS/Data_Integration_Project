@@ -1,0 +1,60 @@
+
+.filterRow div {
+    width: 20%;
+}
+.titlePage{
+    font-weight: 700;
+    margin-top: 10px;
+}
+.input-group{
+    align-items: center !important;
+}
+
+.input-group label {
+    margin-right: 5px;
+}
+#cardWrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+.card{
+    margin: 10px;
+}
+.cardWrapper{
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.card-img-top{
+    object-fit: cover;
+    height: 200px;
+}
+
+.card-title{
+    height: 75px;
+}
+
+.card-text{
+    min-height: 216px;
+}
+
+.search-btn{
+    background: #5E5DF0;
+    border-radius: 999px;
+    box-shadow: #5E5DF0 0 10px 20px -10px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    opacity: 1;
+    outline: 0 solid transparent;
+    padding: 8px 18px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: fit-content;
+    word-break: break-word;
+    border: 0;
+}
