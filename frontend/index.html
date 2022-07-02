@@ -156,16 +156,18 @@
     }
 </script> -->
 <script>
-    let data;
+    // let data;
 
-    function getData(searchInput, priceInput, statusCar, slotCar) {
-        let url = 'http://127.0.0.1:5000/filter?manufacturer=' + searchInput + '&price=' + priceInput + '&price_sort=lt' + '&status=' + statusCar + '&seat=' + slotCar + ''
-        const response = fetch(url);
-        const res = response.json();
-        data = res;
+    async function getData(searchInput, priceInput, statusCar, slotCar) {
+        let url = 'http://127.0.0.1:5000/filter?manufacturer=' + searchInput + '&price=' + priceInput + '&price_sort=lt' + '&status=' + statusCar + '&seat=' + slotCar + '';
+        const response1 = await fetch(url).then(response => response.json());
+        // const res = response.json();
+        // data = response1.result;
+        // console.log(data);
+        return response1.result;
     };
 
-    function search() {
+    async function search() {
         const wrapper = document.getElementById("cardWrapper");
         while (wrapper.hasChildNodes()) {
             wrapper.removeChild(wrapper.firstChild);
@@ -174,11 +176,11 @@
         let priceInput = document.getElementById("quantity").value;
         let statusCar = document.getElementById("statusCar").value;
         let slotCar = document.getElementById("slotCar").value;
-        (async () => {
-            await getData(searchInput, priceInput, statusCar, slotCar);
+        let data = await getData(searchInput, priceInput, statusCar, slotCar);
             // await getData(searchInput);
-        })();
-        let searchArr = [...data];
+
+        let searchArr = data;
+        console.log(searchArr);
         for (let i = 0; i < searchArr.length; i++) {
             var card = document.createElement("div");
             card.className = "cardWrapper";
