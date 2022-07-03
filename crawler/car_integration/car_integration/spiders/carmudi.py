@@ -113,11 +113,6 @@ class CarmudiSpider(scrapy.Spider):
             else price_v2.get().replace("\n", "")
         )
 
-        regex = "\d{4}"
-        # try:
-        #     data["mfg"] = re.findall(regex, data["name"])[-1]
-        # except:
-        #     data['mfg'] = ''
         data["image"] = response.xpath('//div[@id="medium_img"]/a/@href').getall()
         data["manufacturer"] = mapping_car_manufacturer(data["name"])
 

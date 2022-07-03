@@ -119,16 +119,7 @@ class AnycarSpider(scrapy.Spider):
         data["image"] = response.xpath(
             '//*[@id="car-photos"]/div/div/div/center/img/@data-src'
         ).getall()
-        # regex_string = data["name"].split(" ")
-        # if len(regex_string) < 2:
-        #     reg = re.findall(r"(\w+) (.*) (.*) (\d+)", data["name"])[0]
-        #     data["manufacturer"] = reg[0]
-        #     data["engine"] = reg[2]
-        # else:
-        #     reg_manufacturer_type = re.findall(r"(\w+) (.*)", regex_string[0])[0]
-        #     reg_engine = re.findall(r"(.*) (\d+)", regex_string[1])[0]
-        #     data["manufacturer"] = reg_manufacturer_type[0]
-        #     data["engine"] = reg_engine[0]
+
         data['manufacturer'] = mapping_car_manufacturer(data['name'])
         print(data)
         yield data

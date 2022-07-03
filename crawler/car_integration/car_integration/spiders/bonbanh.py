@@ -103,9 +103,6 @@ class BonbanhSpider(scrapy.Spider):
         regex = "\d{4}"
         data["mfg"] = re.findall(regex, data["name"])[-1]
         data["image"] = response.xpath('//div[@id="medium_img"]/a/@href').getall()
-        if data["engine"].split(" ")[0]:
-            data["fuel"] = data["engine"].split(" ")[0]
-        data["engine"] = data["engine"].split(" ")[1]
         manufacturer = mapping_car_manufacturer(data["name"])
         if manufacturer:
             data["manufacturer"] = manufacturer

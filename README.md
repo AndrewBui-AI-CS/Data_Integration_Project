@@ -8,3 +8,8 @@ for crawling data:
 cd crawler/car_integration/car_integration
 bash run_crawler.sh
 ```
+
+Run backend 
+```bash
+export PYTHONPATH=. && python backend/main.py
+```
