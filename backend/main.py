@@ -1,4 +1,4 @@
-from backend.api import search
+from api import search
 
 if __name__ == '__main__':
     search = search.create_app()

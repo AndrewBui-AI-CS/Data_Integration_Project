@@ -81,10 +81,10 @@
     let data;
 
     const getData = async () => {
-        const response = await fetch("./car.json");
+        const response = await fetch("http://127.0.0.1:5000/filter");
         const res = await response.json();
-        data = res;
-        return res;
+        data = res.result;
+        return data;
     };
 
     (async () => {
@@ -135,11 +135,12 @@
         }
         for (let i = 0; i < searchArr.length; i++) {
             if (searchArr[i] !== null) {
+                console.log(searchArr[i].image)
                 var card = document.createElement("div");
                 card.className = "cardWrapper";
                 card.id = "cardWrapper" + i;
                 card.innerHTML = '<div class="card" style="width: 19rem; min-height: 100%">\n' +
-                    '  <img src=" ' + searchArr[i].image[3] + '" class="card-img-top" alt="...">\n' +
+                    '  <img src=" ' + searchArr[i].image[0] + '" class="card-img-top" alt="...">\n' +
                     '  <div class="card-body">\n' +
                     '    <h5 class="card-title">' + searchArr[i].name + '</h5>\n' +
                     '    <p class="card-text">' + 'Màu: ' + searchArr[i].color + '<br>\nXuất xứ: ' + searchArr[i].origin + '<br>\nODO: ' + searchArr[i].km + '<br>\nHệ thống treo: ' + searchArr[i].drive + '<br>\nHãng xe: ' + searchArr[i].manufacturer + '<br>\nTình trạng xe: ' + searchArr[i].status + '<br>\nSố chỗ ngồi: ' + searchArr[i].seat + '<br>\nGiá tiền: ' + numberWithCommas(searchArr[i].price) + ' VNĐ</p>\n' +

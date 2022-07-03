@@ -1,16 +1,19 @@
 import flask
 import json
 
-from backend.api.car_filter import CarFilter
+from api.car_filter import CarFilter
 from flask import request
 from bson import json_util
+from flask_cors import CORS
+
 
 
 car_filter = CarFilter()
 
 def create_app():
     app = flask.Flask(__name__)
-    
+    CORS(app)
+
     @app.route("/")
     def index():
         return "Hello World!"
