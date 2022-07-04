@@ -77,7 +77,7 @@
     </div>
 </div>
 </body>
-<script>
+<!-- <script>
     let data;
 
     const getData = async () => {
@@ -155,5 +155,51 @@
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
+</script> -->
+<script>
+    // let data;
+
+    async function getData(searchInput, priceInput, statusCar, slotCar) {
+        let url = 'http://127.0.0.1:5000/filter?manufacturer=' + searchInput + '&price=' + priceInput + '&price_sort=lt' + '&status=' + statusCar + '&seat=' + slotCar + '';
+        const response1 = await fetch(url).then(response => response.json());
+        // const res = response.json();
+        // data = response1.result;
+        // console.log(data);
+        return response1.result;
+    };
+
+    async function search() {
+        const wrapper = document.getElementById("cardWrapper");
+        while (wrapper.hasChildNodes()) {
+            wrapper.removeChild(wrapper.firstChild);
+        }
+        let searchInput = document.getElementById("search-input").value;
+        let priceInput = document.getElementById("quantity").value;
+        let statusCar = document.getElementById("statusCar").value;
+        let slotCar = document.getElementById("slotCar").value;
+        let data = await getData(searchInput, priceInput, statusCar, slotCar);
+            // await getData(searchInput);
+
+        let searchArr = data;
+        console.log(searchArr);
+        for (let i = 0; i < searchArr.length; i++) {
+            var card = document.createElement("div");
+            card.className = "cardWrapper";
+            card.id = "cardWrapper" + i;
+            card.innerHTML = '<div class="card" style="width: 19rem; min-height: 100%">\n' +
+                '  <img src=" ' + searchArr[i].image[3] + '" class="card-img-top" alt="...">\n' +
+                '  <div class="card-body">\n' +
+                '    <h5 class="card-title">' + searchArr[i].name + '</h5>\n' +
+                '    <p class="card-text">' + 'Màu: ' + searchArr[i].color + '<br>\nXuất xứ: ' + searchArr[i].origin + '<br>\nODO: ' + searchArr[i].km + '<br>\nHệ thống treo: ' + searchArr[i].drive + '<br>\nHãng xe: ' + searchArr[i].manufacturer + '<br>\nTình trạng xe: ' + searchArr[i].status + '<br>\nSố chỗ ngồi: ' + searchArr[i].seat + '<br>\nGiá tiền: ' + numberWithCommas(searchArr[i].price) + ' VNĐ</p>\n' +
+                '    <a href="#" class="btn btn-primary">Mua ngay</a>\n' +
+                '  </div>\n' +
+                '</div>'
+            wrapper.append(card);
+        }
+    }
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
 </script>
-</html>
+</html> 
